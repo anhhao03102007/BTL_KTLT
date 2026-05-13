@@ -1,0 +1,22 @@
+Xac suat hop | P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
+Xac suat giao nhau | P(A ∩ B) = P(A) P(B)  (neu A va B doc lap)
+Xac suat co dieu kien | P(A | B) = P(A ∩ B) / P(B)
+Ham phan phoi | F(x) = P(X ≤ x)
+Mat do phan phoi | f(x) = dF(x) / dx
+Ky vong | E[X] = Σ x P(X = x) hoac ∫ x f(x) dx
+Phuong sai | Var(X) = E[X^2] - (E[X])^2
+Do lech chuan | σ = √(Var(X))
+Bien doi tuyen tinh | E[aX + b] = a E[X] + b
+Bien so tuyen tinh | Var(aX + b) = a^2 Var(X)
+Hop mat | P(A ∩ B) = P(A) P(B | A)
+He so tuong quan | ρ = Cov(X,Y) / (σ_X σ_Y)
+Covariance | Cov(X,Y) = E[(X - E[X])(Y - E[Y])]
+Tong bien ngau nhien | Var(X + Y) = Var(X) + Var(Y) + 2 Cov(X,Y)
+Phan phoi Binomial | P(X=k) = C(n,k) p^k (1-p)^{n-k}
+Phan phoi Poisson | P(X=k) = e^{-λ} λ^k / k!
+Phan phoi chuan | f(x) = 1 / (σ √(2π)) e^{-(x-μ)^2 / (2 σ^2)}
+Bien doi chuan | Z = (X - μ) / σ
+Xap xi chuan | Khi n lon, Binomial ≈ Normal
+Ky vong tong | E[Σ X_i] = Σ E[X_i]
+Phuong sai tong | Var(Σ X_i) = Σ Var(X_i) neu doc lap
+Mo phong mau | X_bar = (1/n) Σ X_i
