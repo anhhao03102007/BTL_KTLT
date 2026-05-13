@@ -7,9 +7,8 @@
     int choice = 0;
     do {
         printf("\n");
-        drawBox(5, 30, "User Menu");
-        printf("1. Xem tat ca cong thuc \n");
-        printf("2. Tim cong thuc theo mon hoc\n");
+        drawBox(5, 30, "User Menu\n");
+        printf("1. Tim cong thuc theo mon hoc\n");
         printf("0. Quay lai\n");
         printf("Selection > ");
         scanf("%d", &choice); 
@@ -18,10 +17,7 @@
         while (getchar() != '\n'); // Xóa bộ đệm sau khi nhập choice
 
         switch(choice) {
-            case 1:
-                printf("Tinh nang xem tat ca cong thuc dang phat trien...\n");
-                break;
-            case 2: {
+            case 1: {
                 int Chon;
                 // Bỏ do...while(1) nếu bạn muốn tìm xong 1 môn rồi quay về User Menu luôn
                 Chon = Choice(); 
@@ -44,10 +40,11 @@
                             break;
                     }
                 }
-                break; // Thoát case 2, quay về User Menu
+                break; // Thoát case 1, quay về User Menu
             }
             case 0:
                 printf("Dang quay lai...\n");
+                Menu();
                 break;
             default:
                 printf("Lua chon khong hop le!\n");
