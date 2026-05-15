@@ -1,7 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-void Menu(void);
-void Account(void);
+void Menu();
 
 #endif /* MENU_H */

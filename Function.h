@@ -7,12 +7,16 @@
 typedef struct Formula {
     char ten[100];
     char congthuc[100];
-    struct Formula *next;
-} Formula;
+    Formula *next;
+}Formula;
 
-/* ============================================================
- *  HAM TIEN ICH - LINKED LIST
- * ============================================================ */
+extern Formula* GT2;
+extern Formula* XS;
+extern Formula* VL;
+extern Formula* CNXH;
+
+// khai bao cac ham
+int Choice();
 Formula *CreateNode(char *ten, char *congthuc);
 void     ThemNode(Formula **head, char *ten, char *congthuc);
 void     XoaNode(Formula **head, char *ten);
@@ -35,6 +39,10 @@ int  Choice(void);
  * ============================================================ */
 void LoadFile(Formula **head, char *nameFile);
 void DisplayOutput(Formula CongThuc, char *nameFile);
+void TimCongThucTheoTen(char *nameFile);
+void XuatCongThuc(Formula CongThuc, char *nameFile);
+void ThemCongThuc(char *nameFile);
+void XoaCongThuc(char *ten, char *nameFile);
 void XuatDanhSachCongThuc(char *nameFile);
 
 #endif /* FUNCTION_H */
