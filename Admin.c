@@ -180,7 +180,7 @@ void SuaCongThuc(char *nameFile) {
     }
     fclose(fout);
     FreeList(List);
-
+}
 
 /* ============================================================
  *  TIM CONG THUC THEO TEN
