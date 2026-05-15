@@ -1,5 +1,5 @@
 #ifndef USER_H
 #define USER_H
 
-    void User();
+    void User(void);
 #endif
