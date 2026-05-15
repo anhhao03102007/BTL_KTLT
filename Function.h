@@ -11,7 +11,7 @@ typedef struct Formula
 extern Formula* GT2;
 extern Formula* XS;
 extern Formula* VL;
-extern Formula* CHXH;
+extern Formula* CNXH;
 
 // khai bao cac ham
 int Choice();
@@ -24,10 +24,10 @@ void ChuanHoaTen(char *name);
 void SuaCongThuc(char *nameFile);
 void LoadFile(Formula **List, char *nameFile);
 void DisplayOutput(Formula CongThuc, char *nameFile);
-void TimCongThucTheoTen( char *nameFile);
-void XuatCongThuc(Formula CongThuc,char *nameFile);
+void TimCongThucTheoTen(char *nameFile);
+void XuatCongThuc(Formula CongThuc, char *nameFile);
 void ThemCongThuc(char *nameFile);
-void XoaCongThuc(char *nameFile);
+void XoaCongThuc(char *ten, char *nameFile);
 void XuatDanhSachCongThuc(char *nameFile);
 void drawBox(int rows, int cols, char* text);
 

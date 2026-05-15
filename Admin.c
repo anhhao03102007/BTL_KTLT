@@ -30,8 +30,8 @@
                 switch(Chon) {
                     case 1: ThemCongThuc("data/Calculus_2.txt"); break;
                     case 2: ThemCongThuc("data/Probability_Statistics.txt"); break;
-                    case 3: ThemCongThuc("data/Political_Science.txt"); break;
-                    case 4: ThemCongThuc("data/Physics.txt"); break;
+                    case 3: ThemCongThuc("data/Political_Economy.txt"); break;
+                    case 4: ThemCongThuc("data/Physic.txt"); break;
                 }
                 break;
             } while (1);
@@ -39,7 +39,6 @@
             char ten[100] = {0};
             int Chon;
             printf("Nhap ten cong thuc can xoa: ");
-            fflush(stdin);
             fgets(ten, sizeof(ten), stdin);
             ten[strcspn(ten, "\n")] = 0;
             if (strlen(ten) == 0) {
@@ -55,8 +54,8 @@
                 switch(Chon) {
                     case 1: XoaCongThuc(ten, "data/Calculus_2.txt"); break;
                     case 2: XoaCongThuc(ten, "data/Probability_Statistics.txt"); break;
-                    case 3: XoaCongThuc(ten, "data/Political_Science.txt"); break;
-                    case 4: XoaCongThuc(ten, "data/Physics.txt"); break;
+                    case 3: XoaCongThuc(ten, "data/Political_Economy.txt"); break;
+                    case 4: XoaCongThuc(ten, "data/Physic.txt"); break;
                 }
                 break;
             } while (1);
