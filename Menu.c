@@ -7,7 +7,7 @@
 
 // Hàm vẽ khung có chứa nội dung văn bản bên trong
 
-void Account() {
+void Login() {
     int choice;
     char password[100];
 
@@ -40,6 +40,6 @@ void Account() {
     
     void Menu(){
         printf("Welcome to the Formula Management System\n");
-        Account();
+        Login();
     }
 

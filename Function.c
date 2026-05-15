@@ -18,7 +18,18 @@ Formula *CreateNode(char *ten, char *congthuc) {
     return newNode;
 }
 
-
+void ThemNode(Formula **head, char *ten, char *congthuc) {
+    Formula *newNode = CreateNode(ten, congthuc);
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        Formula *current = *head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+}
 void XoaNode(Formula **head, char *ten) {
     Formula *current = *head;
     Formula *prev = NULL;
@@ -54,7 +65,7 @@ void ChuanHoaTen(char *name) {
     char copy[100];
     strcpy(copy, name);
   
-    char temp[200];
+    char temp[200]="";
 
     char *token = strtok(copy, " ");
     while (token != NULL) {
@@ -220,7 +231,7 @@ void DisplayOutput(Formula CongThuc, char *nameFile) {
  *  THÊM CÔNG THỨC
  * ============================================================ */
 
-void ThemCongThuc(Formula **List , char *nameFile) {
+void ThemCongThuc ( Formula** List ,char *nameFile ) {
     FILE *fout = fopen(nameFile, "a");
     if (fout == NULL) {
         printf("Khong the mo file: %s\n", nameFile);
@@ -237,10 +248,13 @@ void ThemCongThuc(Formula **List , char *nameFile) {
     printf(" Nhap cong thuc : ");
     fgets(congthuc, sizeof(congthuc), stdin);
     congthuc[strcspn(congthuc, "\n")] = '\0';
-
-    fprintf(fout, "%s | %s\n", ten,congthuc);
+    Formula* cur = *List;
+    ThemNode(List, ten, congthuc);
+    while (cur != NULL) {
+        fprintf(fout, "%s|%s\n", cur->ten, cur->congthuc);
+        cur = cur->next;
+    }
     fclose(fout);
-
 }
 
 /* ============================================================
