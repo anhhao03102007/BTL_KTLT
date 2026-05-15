@@ -93,27 +93,13 @@ void ChuanHoaTen(char *name) {
         token = strtok(NULL, " ");
     }
 
-    /* Xóa khoảng trắng thừa ở cuối */
-    if (strlen(temp) > 0) {
-        temp[strcspn(temp, " ")] = '\0';
-    }
+    /* Xoa khoang trang thua o cuoi */
+    int len = (int)strlen(temp);
+    if (len > 0 && temp[len - 1] == ' ')
+        temp[len - 1] = '\0';
 
-    strcpy(name, temp);
-}
-
-void FreeList(Formula *head){
-    Formula* temp;
-    while ( head ){
-        temp = head;
-        head = head->next;
-        free(temp);
-    }
-}
-
-/* Đọc stdin an toàn: xóa newline thừa sau scanf */
-static void FlushStdin(void) {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+    strncpy(name, temp, 99);
+    name[99] = '\0';
 }
 
 /* ============================================================
@@ -200,10 +186,18 @@ void LoadFile(Formula **head, char *nameFile) {
 
         token = strtok(NULL, "|");
         if (token == NULL) continue;
-        strcpy(congthuc, token);
-        ten[strcspn(ten, "\n")] = '\0';
-        congthuc[strcspn(congthuc, "\n")] = '\0';
-        ThemNode(head, ten, congthuc);
+
+        /* Bo khoang trang dau congthuc (do dinh dang "ten | ct") */
+        while (*token == ' ') token++;
+        char congthuc[100];
+        strncpy(congthuc, token, sizeof(congthuc) - 1);
+        congthuc[sizeof(congthuc) - 1] = '\0';
+
+        /* Xoa khoang trang cuoi ten */
+        int tlen = (int)strlen(ten);
+        while (tlen > 0 && ten[tlen - 1] == ' ') ten[--tlen] = '\0';
+
+        ThemNode(head, ten, congthuc);  /* FIX: goi thang ThemNode, khong tao node thua */
     }
     fclose(fin);
 }
@@ -215,7 +209,6 @@ void DisplayOutput(Formula CongThuc, char *nameFile) {
         printf("  Khong the mo file: %s\n", nameFile);
         return;
     }
-
 
     char content[210];
     snprintf(content, sizeof(content), "%s | %s", CongThuc.ten, CongThuc.congthuc);
@@ -251,37 +244,8 @@ void DisplayOutput(Formula CongThuc, char *nameFile) {
     fclose(fout);
 }
 
-/* ============================================================
- *  THÊM CÔNG THỨC
- * ============================================================ */
-
-void ThemCongThuc(Formula **List , char *nameFile) {
-    FILE *fout = fopen(nameFile, "a");
-    if (fout == NULL) {
-        printf("Khong the mo file: %s\n", nameFile);
-        return;
-    }
-
-    char ten[100] , congthuc[100];
-    printf(" Nhap ten cong thuc : ");
-    fgets(ten, sizeof(ten), stdin);
-    ten[strcspn(ten, "\n")] = '\0';
-    ChuanHoaTen(ten);
-
-    printf(" Nhap cong thuc : ");
-    fgets(congthuc, sizeof(congthuc), stdin);
-    congthuc[strcspn(congthuc, "\n")] = '\0';
-
-    fprintf(fout, "%s | %s\n", ten,congthuc);
-    fclose(fout);
-
-}
-
-/* ============================================================
- *  TÌM CÔNG THỨC THEO TÊN
- * ============================================================ */
-
-void TimCongThucTheoTen(char *nameFile) {
+/* Xuat toan bo danh sach cong thuc ra man hinh */
+void XuatDanhSachCongThuc(char *nameFile) {
     Formula *List = NULL;
     LoadFile(&List, nameFile);
 
@@ -297,123 +261,7 @@ void TimCongThucTheoTen(char *nameFile) {
         printf("  %d. %-30s | %s\n", stt++, current->ten, current->congthuc);
         current = current->next;
     }
-    
+    printf("  Tong so: %d cong thuc.\n", stt - 1);
 
-    if (!found) {
-        printf("  Khong tim thay cong thuc nao voi tu khoa: '%s'\n", tenTim);
-    } else {
-        printf("  Tim thay %d ket qua. Da luu vao 'DisplayData.txt'.\n", found);
-    }
     FreeList(List);
-}
-
-void XuatCongThuc(Formula CongThuc, char *nameFile) {
-    (void)nameFile;
-    printf("  %-30s | %s\n", CongThuc.ten, CongThuc.congthuc);
-}
-
-void XuatDanhSachCongThuc(char *nameFile) {
-    Formula *List = NULL;
-    LoadFile(&List, nameFile);
-    if (List == NULL) {
-        printf("  Khong the doc du lieu tu file: %s\n", nameFile);
-        return;
-    }
-
-    printf("\nDanh sach cong thuc trong file '%s':\n", nameFile);
-    Formula *current = List;
-    while (current != NULL) {
-        XuatCongThuc(*current, nameFile);
-        current = current->next;
-    }
-    FreeList(List);
-    printf("\n");
-}
-
-/* ============================================================
- *  XÓA CÔNG THỨC
- * ============================================================ */
-
-void XoaCongThuc(char *ten, char *nameFile) {
-    if (ten == NULL || nameFile == NULL) return;
-
-    if (ten[0] == '\0') {
-        printf("  Ten cong thuc khong the trong!\n");
-        return;
-    }
-
-    Formula *List = NULL;
-    LoadFile(&List, nameFile);
-
-    if (List == NULL) {
-        printf("  Khong co du lieu de xoa!\n");
-        return;
-    }
-
-    ChuanHoaTen(ten);
-    XoaNode(&List, ten);
-
-    FILE *fout = fopen(nameFile, "w");
-    if (fout == NULL) {
-        printf("  Khong the mo file: %s\n", nameFile);
-        FreeList(List);
-        return;
-    }
-
-    Formula *current = List;
-    while (current != NULL) {
-        fprintf(fout, "%s | %s\n", current->ten, current->congthuc);
-        current = current->next;
-    }
-    fclose(fout);
-    FreeList(List);
-    printf("  Da xoa cong thuc '%s' va cap nhat file '%s' thanh cong!\n", ten, nameFile);
-}
-/* ============================================================
- *  SỬA CÔNG THỨC
- * ============================================================ */
-
-void SuaCongThuc(char *nameFile) {
-    Formula *List = NULL;
-    LoadFile(&List, nameFile);
-
-    if (List == NULL || nameFile == NULL) return;
-   
-    char tenTimKiem[100];
-    FlushStdin();
-    printf("  Nhap ten cong thuc can sua: ");
-    fgets(tenTimKiem, sizeof(tenTimKiem), stdin);
-    tenTimKiem[strcspn(tenTimKiem, "\n")] = '\0';
-    ChuanHoaTen(tenTimKiem);
-    Formula *current = List;
-    while (current != NULL) {
-        if (strcmp(current->ten, tenTimKiem) == 0) {
-            printf("  Tim thay cong thuc: %s | %s\n", current->ten, current->congthuc);
-            printf("  Nhap cong thuc moi: ");
-            char congThucMoi[100];
-            fgets(congThucMoi, sizeof(congThucMoi), stdin);
-            congThucMoi[strcspn(congThucMoi, "\n")] = '\0';
-
-            if (strlen(congThucMoi) > 0) {
-                strcpy(current->congthuc, congThucMoi);
-                printf("  Da cap nhat cong thuc moi: %s | %s\n", current->ten, current->congthuc);
-            } else {
-                printf("  Cong thuc khong duoc de trong. Giữ nguyên cong thuc cu.\n");
-            }
-            break;
-        }
-    }
-
-    FILE *fin = fopen(nameFile, "w");
-    if (fin == NULL) {
-        printf("  Khong the mo file: %s\n", nameFile);
-        return;
-    }
-    Formula *temp = List;
-    while (temp != NULL) {
-        fprintf(fin, "%s|%s\n", temp->ten, temp->congthuc);
-        temp = temp->next;
-    }
-
-    fclose(fin);
 }
