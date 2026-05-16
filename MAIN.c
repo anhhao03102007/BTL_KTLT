@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Function.h"
 #include "Menu.h"
+#include "Admin.h"
+#include "User.h"
 
 int main() {
     int choice;

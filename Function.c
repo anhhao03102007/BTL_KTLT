@@ -106,7 +106,7 @@ void ChuanHoaTen(char *name) {
     name[99] = '\0';
 }
 
-static void FlushStdin(void) {
+void FlushStdin() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
@@ -117,16 +117,17 @@ static void FlushStdin(void) {
 
 static void printChoiceMenu() {
     printf("\n");
-    printf(CYAN "╔══════════════════════════════════════╗\n" RESET);
-    printf(CYAN "║   " BOLD YELLOW "📚  Danh sach mon hoc             " RESET CYAN "║\n" RESET);
-    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
-    printf(CYAN "║   " GREEN "1." WHITE "  Giai tich                      " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "2." WHITE "  Vat ly                         " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "3." WHITE "  Xac suat thong ke              " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "4." WHITE "  Kinh te chinh tri              " CYAN "║\n" RESET);
-    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
-    printf(CYAN "║   " DIM "0.  Quay lai                       " RESET CYAN "║\n" RESET);
-    printf(CYAN "╚══════════════════════════════════════╝\n" RESET);
+    
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "📚  DANH SACH MON HOC            " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " GREEN "1." WHITE "  Giai tich                     " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "2." WHITE "  Vat ly                        " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "3." WHITE "  Xac suat thong ke             " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "4." WHITE "  Kinh te chinh tri             " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "\n➤  " RESET BOLD "Chon mon hoc (0-4): " RESET);
 }
 

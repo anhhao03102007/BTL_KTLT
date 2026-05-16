@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Function.h"
+#include "Menu.h"
+#include "Admin.h"
+#include "User.h"
 
 
 // Hàm phụ trợ xóa bộ đệm bàn phím

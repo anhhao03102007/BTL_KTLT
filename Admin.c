@@ -24,24 +24,28 @@ static void getFilePath(int mon, char *fileMocHoc) {
 
 static void printAdminMenu() {
     printf("\n");
-    printf(CYAN "╔══════════════════════════════════════╗\n" RESET);
-    printf(CYAN "║   " BOLD YELLOW "🛠  Admin menu                      " RESET CYAN "║\n" RESET);
-    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
-    printf(CYAN "║   " GREEN "1." WHITE "  Them cong thuc                 " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "2." WHITE "  Xoa cong thuc                  " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "3." WHITE "  Sua cong thuc                  " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "4." WHITE "  Tim kiem cong thuc             " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "5." WHITE "  Xem danh sach cong thuc        " CYAN "║\n" RESET);
-    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
-    printf(CYAN "║   " DIM "0.  Quay lai                       " RESET CYAN "║\n" RESET);
-    printf(CYAN "╚══════════════════════════════════════╝\n" RESET);
+    // Sử dụng dấu + và - để tạo khung không bao giờ lỗi font
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "🛠   ADMIN MENU                     " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " GREEN "1." WHITE "  Them cong thuc                " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "2." WHITE "  Xoa cong thuc                 " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "3." WHITE "  Sua cong thuc                 " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "4." WHITE "  Tim kiem cong thuc            " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "5." WHITE "  Xem danh sach cong thuc       " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "\n➤  " RESET BOLD "Lua chon: " RESET);
 }
+
 
 /* ============================================================
  *  THEM CONG THUC
  * ============================================================ */
 void ThemCongThuc(char *nameFile) {
+
+    FlushStdin();
     FILE *fout = fopen(nameFile, "a");
     if (fout == NULL) {
         printf("  Loi: Khong the mo file: %s\n", nameFile);
@@ -85,6 +89,7 @@ void XoaCongThuc(char *nameFile) {
     char ten[100];
     printf("  Nhap ten cong thuc can xoa: ");
     if (fgets(ten, sizeof(ten), stdin) == NULL) return;
+    FlushStdin();
     ten[strcspn(ten, "\n")] = '\0';
 
     if (ten[0] == '\0') {
@@ -250,7 +255,7 @@ void TimCongThucTheoTen(char *nameFile) {
 /* ============================================================
  *  MENU ADMIN
  * ============================================================ */
-void Admin(void) {
+void Admin() {
     int choice = 0;
     char fileMocHoc[100];
 

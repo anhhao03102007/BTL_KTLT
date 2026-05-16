@@ -32,9 +32,11 @@ int  Choice(void);
 /* ============================================================
  *  HAM FILE I/O (DUNG CHUNG CHO ADMIN VA USER)
  * ============================================================ */
+ void FlushStdin();
 void LoadFile(Formula **head, char *nameFile);
 void DisplayOutputList(Formula *List, char *nameFile);
 void DisplayOutput(Formula CongThuc, char *nameFile);
 void XuatDanhSachCongThuc(char *nameFile);
+void TimCongThucTheoTen(char *nameFile);
 
 #endif 

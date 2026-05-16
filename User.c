@@ -25,14 +25,14 @@ static void getFilePath(int mon, char *fileMocHoc) {
 
 static void printMenu() {
     printf("\n");
-    printf(CYAN "╔══════════════════════════════════════╗\n" RESET);
-    printf(CYAN "║   " BOLD YELLOW "⚗  User menu                       " RESET CYAN "║\n" RESET);
-    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
-    printf(CYAN "║   " GREEN "1." WHITE "  Xem danh sach cong thuc        " CYAN "║\n" RESET);
-    printf(CYAN "║   " GREEN "2." WHITE "  Tim cong thuc theo mon hoc     " CYAN "║\n" RESET);
-    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
-    printf(CYAN "║   " DIM "0.  Quay lai                       " RESET CYAN "║\n" RESET);
-    printf(CYAN "╚══════════════════════════════════════╝\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "⚗   USER MENU                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " GREEN "1." WHITE "  Xem danh sach cong thuc       " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "2." WHITE "  Tim cong thuc theo mon hoc    " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "\n➤  " RESET BOLD "Lua chon: " RESET);
 }
 
