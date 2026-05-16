@@ -4,12 +4,13 @@
 /* ============================================================
  *  CRUD - QUAN LY CONG THUC (CHI ADMIN MOI DUNG)
  * ============================================================ */
+static void ChuanHoaTen(char *ten);
 void ThemCongThuc(char *nameFile);
 void XoaCongThuc(char *nameFile);
 void SuaCongThuc(char *nameFile);
 void TimCongThucTheoTen(char *nameFile);
 
-/* Ham dieu phoi chinh cua Admin */
-void Admin(void);
+
+void Admin();
 
 #endif /* ADMIN_H */

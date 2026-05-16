@@ -4,11 +4,42 @@
 #include "Admin.h"
 #include "Function.h"
 
+#define RESET   "\033[0m"
+#define BOLD    "\033[1m"
+#define DIM     "\033[2m"
+#define CYAN    "\033[36m"
+#define YELLOW  "\033[33m"
+#define GREEN   "\033[32m"
+#define WHITE   "\033[97m"
+
+static void getFilePath(int mon, char *fileMocHoc) {
+    switch (mon) {
+        case 1: strcpy(fileMocHoc, "data/Calculus_2.txt");             break;
+        case 2: strcpy(fileMocHoc, "data/Probability_Statistics.txt"); break;
+        case 3: strcpy(fileMocHoc, "data/Political_Science.txt");      break;
+        case 4: strcpy(fileMocHoc, "data/Physics.txt");                break;
+        default: fileMocHoc[0] = '\0'; break;
+    }
+}
+
+static void printAdminMenu() {
+    printf("\n");
+    printf(CYAN "╔══════════════════════════════════════╗\n" RESET);
+    printf(CYAN "║   " BOLD YELLOW "🛠  Admin menu                      " RESET CYAN "║\n" RESET);
+    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
+    printf(CYAN "║   " GREEN "1." WHITE "  Them cong thuc                 " CYAN "║\n" RESET);
+    printf(CYAN "║   " GREEN "2." WHITE "  Xoa cong thuc                  " CYAN "║\n" RESET);
+    printf(CYAN "║   " GREEN "3." WHITE "  Sua cong thuc                  " CYAN "║\n" RESET);
+    printf(CYAN "║   " GREEN "4." WHITE "  Tim kiem cong thuc             " CYAN "║\n" RESET);
+    printf(CYAN "║   " GREEN "5." WHITE "  Xem danh sach cong thuc        " CYAN "║\n" RESET);
+    printf(CYAN "╠══════════════════════════════════════╣\n" RESET);
+    printf(CYAN "║   " DIM "0.  Quay lai                       " RESET CYAN "║\n" RESET);
+    printf(CYAN "╚══════════════════════════════════════╝\n" RESET);
+    printf(CYAN "\n➤  " RESET BOLD "Lua chon: " RESET);
+}
+
 /* ============================================================
  *  THEM CONG THUC
- *  - Nhan ten va cong thuc tu ban phim
- *  - Ghi them vao cuoi file (append)
- *  BUG FIX: bo tham so Formula** thua, chi can char *nameFile
  * ============================================================ */
 void ThemCongThuc(char *nameFile) {
     FILE *fout = fopen(nameFile, "a");
@@ -47,8 +78,6 @@ void ThemCongThuc(char *nameFile) {
 
 /* ============================================================
  *  XOA CONG THUC
- *  - Tim theo ten, xoa khoi linked list
- *  - Ghi lai toan bo list vao file
  * ============================================================ */
 void XoaCongThuc(char *nameFile) {
     if (nameFile == NULL) return;
@@ -72,7 +101,6 @@ void XoaCongThuc(char *nameFile) {
         return;
     }
 
-    /* Kiem tra ton tai truoc khi xoa */
     Formula *cur = List;
     int found = 0;
     while (cur) {
@@ -101,16 +129,11 @@ void XoaCongThuc(char *nameFile) {
     }
     fclose(fout);
     FreeList(List);
-
     printf("  Da xoa cong thuc '%s' va cap nhat file '%s' thanh cong!\n", ten, nameFile);
 }
 
 /* ============================================================
  *  SUA CONG THUC
- *  - Tim theo ten, cap nhat cong thuc moi trong linked list
- *  - Ghi lai toan bo list vao file
- *  BUG FIX #1: xoa khai bao current thu hai (compiler error)
- *  BUG FIX #2: them current = current->next vao vong while
  * ============================================================ */
 void SuaCongThuc(char *nameFile) {
     if (nameFile == NULL) return;
@@ -125,10 +148,7 @@ void SuaCongThuc(char *nameFile) {
 
     char tenTimKiem[100];
     printf("  Nhap ten cong thuc can sua: ");
-    if (fgets(tenTimKiem, sizeof(tenTimKiem), stdin) == NULL) {
-        FreeList(List);
-        return;
-    }
+    if (fgets(tenTimKiem, sizeof(tenTimKiem), stdin) == NULL) { FreeList(List); return; }
     tenTimKiem[strcspn(tenTimKiem, "\n")] = '\0';
 
     if (tenTimKiem[0] == '\0') {
@@ -139,7 +159,7 @@ void SuaCongThuc(char *nameFile) {
     ChuanHoaTen(tenTimKiem);
 
     int found = 0;
-    Formula *current = List;                 /* FIX: chi khai bao 1 lan */
+    Formula *current = List;
     while (current != NULL) {
         if (strcmp(current->ten, tenTimKiem) == 0) {
             printf("  Tim thay: %-30s | %s\n", current->ten, current->congthuc);
@@ -159,13 +179,12 @@ void SuaCongThuc(char *nameFile) {
             found = 1;
             break;
         }
-        current = current->next;             /* FIX: them dong nay, tranh lap vo han */
+        current = current->next;
     }
 
     if (!found)
         printf("  Khong tim thay cong thuc '%s'!\n", tenTimKiem);
 
-    /* Ghi lai file sau khi sua */
     FILE *fout = fopen(nameFile, "w");
     if (fout == NULL) {
         printf("  Loi: Khong the ghi file: %s\n", nameFile);
@@ -173,7 +192,7 @@ void SuaCongThuc(char *nameFile) {
         return;
     }
 
-    current = List;                          /* FIX: dung lai bien current cu */
+    current = List;
     while (current != NULL) {
         fprintf(fout, "%s | %s\n", current->ten, current->congthuc);
         current = current->next;
@@ -184,8 +203,6 @@ void SuaCongThuc(char *nameFile) {
 
 /* ============================================================
  *  TIM CONG THUC THEO TEN
- *  - Ho tro tim kiem khop chinh xac theo ten
- *  - Ket qua hien thi tren man hinh va luu vao DisplayData.txt
  * ============================================================ */
 void TimCongThucTheoTen(char *nameFile) {
     Formula *List = NULL;
@@ -198,10 +215,7 @@ void TimCongThucTheoTen(char *nameFile) {
 
     char tenTim[100];
     printf("  Nhap ten cong thuc can tim: ");
-    if (fgets(tenTim, sizeof(tenTim), stdin) == NULL) {
-        FreeList(List);
-        return;
-    }
+    if (fgets(tenTim, sizeof(tenTim), stdin) == NULL) { FreeList(List); return; }
     tenTim[strcspn(tenTim, "\n")] = '\0';
 
     if (tenTim[0] == '\0') {
@@ -211,7 +225,6 @@ void TimCongThucTheoTen(char *nameFile) {
     }
     ChuanHoaTen(tenTim);
 
-    /* Xoa file output cu truoc khi ghi ket qua moi */
     FILE *fout = fopen("DisplayData.txt", "w");
     if (fout) fclose(fout);
 
@@ -219,9 +232,7 @@ void TimCongThucTheoTen(char *nameFile) {
     Formula *current = List;
     while (current != NULL) {
         if (strcmp(current->ten, tenTim) == 0) {
-            /* In ra man hinh */
             printf("  %-30s | %s\n", current->ten, current->congthuc);
-            /* Luu vao file */
             DisplayOutput(*current, "DisplayData.txt");
             found++;
         }
@@ -237,48 +248,34 @@ void TimCongThucTheoTen(char *nameFile) {
 }
 
 /* ============================================================
- *  HAM DIEU PHOI ADMIN (MENU CHINH)
+ *  MENU ADMIN
  * ============================================================ */
 void Admin(void) {
     int choice = 0;
-    char *fileMocHoc = NULL;
+    char fileMocHoc[100];
 
     do {
-        printf("\n");
-        drawBox(9, 36, "QUAN LY CONG THUC - ADMIN");
-        printf("  1. Them cong thuc\n");
-        printf("  2. Xoa cong thuc\n");
-        printf("  3. Sua cong thuc\n");
-        printf("  4. Tim kiem cong thuc\n");
-        printf("  5. Xem danh sach cong thuc\n");
-        printf("  0. Quay lai\n");
-        printf("  Lua chon > ");
+        printAdminMenu();
 
         if (scanf("%d", &choice) != 1) {
             while (getchar() != '\n');
             printf("  Vui long nhap so!\n");
             continue;
         }
-        while (getchar() != '\n'); /* Xoa buffer */
+        while (getchar() != '\n');
 
         if (choice == 0) break;
 
-        /* Chon mon hoc truoc khi thuc hien */
         int mon = Choice();
-        switch (mon) {
-            case 1: fileMocHoc = "data/Calculus_2.txt";            break;
-            case 2: fileMocHoc = "data/Probability_Statistics.txt"; break;
-            case 3: fileMocHoc = "data/Political_Science.txt";      break;
-            case 4: fileMocHoc = "data/Physics.txt";                break;
-            case 0: printf("  Quay lai menu Admin.\n"); continue;
-            default: printf("  Mon hoc khong hop le!\n");          continue;
-        }
+        if (mon == 0) { printf("  Quay lai menu Admin.\n"); continue; }
+        getFilePath(mon, fileMocHoc);
+        if (fileMocHoc[0] == '\0') { printf("  Mon hoc khong hop le!\n"); continue; }
 
         switch (choice) {
-            case 1: ThemCongThuc(fileMocHoc);       break;
-            case 2: XoaCongThuc(fileMocHoc);        break;
-            case 3: SuaCongThuc(fileMocHoc);        break;
-            case 4: TimCongThucTheoTen(fileMocHoc); break;
+            case 1: ThemCongThuc(fileMocHoc);         break;
+            case 2: XoaCongThuc(fileMocHoc);          break;
+            case 3: SuaCongThuc(fileMocHoc);          break;
+            case 4: TimCongThucTheoTen(fileMocHoc);   break;
             case 5: XuatDanhSachCongThuc(fileMocHoc); break;
             default: printf("  Lua chon khong hop le!\n");
         }

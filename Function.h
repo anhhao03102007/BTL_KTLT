@@ -14,9 +14,9 @@ typedef struct Formula {
  *  HAM TIEN ICH - LINKED LIST
  * ============================================================ */
 Formula *CreateNode(char *ten, char *congthuc);
-void     ThemNode(Formula **head, char *ten, char *congthuc);
-void     XoaNode(Formula **head, char *ten);
-void     FreeList(Formula *head);
+void ThemNode(Formula **head, char *ten, char *congthuc);
+void XoaNode(Formula **head, char *ten);
+void FreeList(Formula *head);
 
 /* ============================================================
  *  HAM TIEN ICH - CHUAN HOA CHUOI
@@ -27,14 +27,14 @@ void ChuanHoaTen(char *name);
 /* ============================================================
  *  HAM TIEN ICH - VE KHUNG & MENU
  * ============================================================ */
-void drawBox(int rows, int cols, char *text);
 int  Choice(void);
 
 /* ============================================================
  *  HAM FILE I/O (DUNG CHUNG CHO ADMIN VA USER)
  * ============================================================ */
 void LoadFile(Formula **head, char *nameFile);
+void DisplayOutputList(Formula *List, char *nameFile);
 void DisplayOutput(Formula CongThuc, char *nameFile);
 void XuatDanhSachCongThuc(char *nameFile);
 
-#endif /* FUNCTION_H */
+#endif 
