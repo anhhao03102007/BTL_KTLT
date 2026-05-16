@@ -4,9 +4,28 @@
 #include "Menu.h"
 #include "Admin.h"
 #include "User.h"
+#include <windows.h>
+
+void loadingAnimation() {
+    printf("=============================================================\n");
+    printf("   CHUONG TRINH QUAN LY CONG THUC - BAI TAP LON KTLT         \n");
+    printf("=============================================================\n");
+    Sleep(1000);
+    printf("Dang tai du lieu va khoi dong chuong trinh...\n");
+   int totalSteps = 20;
+   printf("Loading: [");
+   for (int i = 0; i < totalSteps; i++) {
+       Sleep(100); 
+       printf("#");
+   }
+   printf("] 100%%\n");
+   printf("\n\n Completed !");
+   getchar();
+}
 
 int main() {
     int choice;
+    loadingAnimation();
     do {
         hienThiMenuChinh();
         printf("\nVui long nhap lua chon cua ban (0-2): ");

@@ -17,8 +17,8 @@ static void getFilePath(int mon, char *fileMocHoc) {
     switch (mon) {
         case 1: strcpy(fileMocHoc, "data/Calculus_2.txt");             break;
         case 2: strcpy(fileMocHoc, "data/Probability_Statistics.txt"); break;
-        case 3: strcpy(fileMocHoc, "data/Political_Science.txt");      break;
-        case 4: strcpy(fileMocHoc, "data/Physics.txt");                break;
+        case 3: strcpy(fileMocHoc, "data/Political_Economy.txt");      break;
+        case 4: strcpy(fileMocHoc, "data/Physic.txt");                break;
         default: fileMocHoc[0] = '\0'; break;
     }
 }
@@ -26,7 +26,7 @@ static void getFilePath(int mon, char *fileMocHoc) {
 static void printMenu() {
     printf("\n");
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " BOLD YELLOW "⚗   USER MENU                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "   USER MENU                      " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "|   " GREEN "1." WHITE "  Xem danh sach cong thuc       " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "2." WHITE "  Tim cong thuc theo mon hoc    " RESET CYAN "|\n" RESET);

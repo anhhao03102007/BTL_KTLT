@@ -15,9 +15,9 @@
 static void getFilePath(int mon, char *fileMocHoc) {
     switch (mon) {
         case 1: strcpy(fileMocHoc, "data/Calculus_2.txt");             break;
-        case 2: strcpy(fileMocHoc, "data/Probability_Statistics.txt"); break;
-        case 3: strcpy(fileMocHoc, "data/Political_Science.txt");      break;
-        case 4: strcpy(fileMocHoc, "data/Physics.txt");                break;
+        case 2: strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); break;
+        case 3: strcpy(fileMocHoc, "data/Political_Economy.txt");      break;
+        case 4: strcpy(fileMocHoc, "data/Physic.txt");                break;
         default: fileMocHoc[0] = '\0'; break;
     }
 }
@@ -26,7 +26,7 @@ static void printAdminMenu() {
     printf("\n");
     // Sử dụng dấu + và - để tạo khung không bao giờ lỗi font
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " BOLD YELLOW "🛠   ADMIN MENU                     " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "   ADMIN MENU                     " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "|   " GREEN "1." WHITE "  Them cong thuc                " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "2." WHITE "  Xoa cong thuc                 " RESET CYAN "|\n" RESET);
@@ -86,6 +86,7 @@ void ThemCongThuc(char *nameFile) {
 void XoaCongThuc(char *nameFile) {
     if (nameFile == NULL) return;
 
+    FlushStdin();
     char ten[100];
     printf("  Nhap ten cong thuc can xoa: ");
     if (fgets(ten, sizeof(ten), stdin) == NULL) return;
@@ -143,6 +144,7 @@ void XoaCongThuc(char *nameFile) {
 void SuaCongThuc(char *nameFile) {
     if (nameFile == NULL) return;
 
+    FlushStdin();
     Formula *List = NULL;
     LoadFile(&List, nameFile);
 
@@ -175,8 +177,7 @@ void SuaCongThuc(char *nameFile) {
             congThucMoi[strcspn(congThucMoi, "\n")] = '\0';
 
             if (strlen(congThucMoi) > 0) {
-                strncpy(current->congthuc, congThucMoi, sizeof(current->congthuc) - 1);
-                current->congthuc[sizeof(current->congthuc) - 1] = '\0';
+                strcpy(current->congthuc, congThucMoi);
                 printf("  Da cap nhat: %-30s | %s\n", current->ten, current->congthuc);
             } else {
                 printf("  Giu nguyen cong thuc cu.\n");
@@ -217,7 +218,7 @@ void TimCongThucTheoTen(char *nameFile) {
         printf("  Khong co du lieu de tim kiem!\n");
         return;
     }
-
+    FlushStdin();
     char tenTim[100];
     printf("  Nhap ten cong thuc can tim: ");
     if (fgets(tenTim, sizeof(tenTim), stdin) == NULL) { FreeList(List); return; }
