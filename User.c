@@ -23,11 +23,9 @@ static void getFilePath(int mon, char *fileMocHoc,char *tenMon) {
         case 2: 
             strcpy(fileMocHoc, "data/Physic.txt");                
             strcpy(tenMon, "Vat ly"); 
-            strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); 
-            strcpy(tenMon, "Xac suat Thong ke"); 
             break;
         case 3: 
-            strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); 
+            strcpy(fileMocHoc, "data/Probability_Statistics.txt"); 
             strcpy(tenMon, "Xac suat Thong ke");  
             break;
         case 4: 
@@ -40,6 +38,7 @@ static void getFilePath(int mon, char *fileMocHoc,char *tenMon) {
             break;
     }
 }
+
 
 static void printMenu() {
     printf("\n");
