@@ -48,3 +48,4 @@ He Taylor ham sin x | sin x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1)!
 He Taylor ham cos x | cos x = Σ_{n=0}^∞ (-1)^n x^{2n}/(2n)!
 He Taylor ham ln(1+x) | ln(1+x) = Σ_{n=1}^∞ (-1)^{n-1} x^n/n, 
 He Taylor ham arctan x | arctan x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1), 
+Ph�p c?ng | 1 + 1 = 2

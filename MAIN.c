@@ -22,24 +22,20 @@ void loadingAnimation() {
     printf(CYAN "=============================================================\n" RESET);
     printf(CYAN "|" BOLD YELLOW "   CHUONG TRINH QUAN LY CONG THUC - BAI TAP LON KTLT   " RESET CYAN "|\n" RESET);
     printf(CYAN "=============================================================\n" RESET);
-    Sleep(800);
+    Sleep(600);
 
     printf(WHITE "\n  Dang khoi dong he thong");
     for (int i = 0; i < 3; i++) {
-        Sleep(400);
+        Sleep(300);
         printf(YELLOW "." RESET);
     }
     printf("\n\n" RESET);
-    Sleep(300);
 
-    // Thanh loading với màu động
     int totalSteps = 20;
     printf("  " CYAN "Loading: [" RESET);
 
     for (int i = 0; i < totalSteps; i++) {
-        Sleep(100);
-
-        // Đổi màu theo tiến trình
+       
         if (i < 7)
             printf(RED "#" RESET);        
         else if (i < 14)
@@ -47,11 +43,16 @@ void loadingAnimation() {
         else
             printf(GREEN "#" RESET);      
 
-        printf(WHITE "\b\b\b\b\b] %3d%%", (i + 1) * 5);
-        printf("\033[%dD", (i + 2));      
+        printf(WHITE "] %3d%%" RESET, (i + 1) * 5);
+
+        printf("\b\b\b\b\b\b"); 
+
+     
+        fflush(stdout); 
+        Sleep(100);
     }
 
-    printf(CYAN "] " GREEN BOLD "100%%" RESET "\n\n");
+    printf(GREEN "#" CYAN "] " GREEN BOLD "100%%" RESET "\n\n");
     Sleep(300);
 
     printf(CYAN "  =============================================================\n" RESET);

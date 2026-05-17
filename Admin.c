@@ -26,7 +26,7 @@ static void getFilePath(int mon, char *fileMocHoc,char *tenMon) {
             strcpy(tenMon, "Vat ly"); 
             break;
         case 3: 
-            strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); 
+            strcpy(fileMocHoc, "data/Probability_Statistics.txt"); 
             strcpy(tenMon, "Xac suat Thong ke");  
             break;
         case 4: 
@@ -43,17 +43,17 @@ static void getFilePath(int mon, char *fileMocHoc,char *tenMon) {
 static void printAdminMenu() {
     printf("\n");
     system("cls");
-    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "+-------------------------------------+\n" RESET);
     printf(CYAN "|   " BOLD YELLOW "   ADMIN MENU                     " RESET CYAN "|\n" RESET);
-    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "+-------------------------------------+\n" RESET);
     printf(CYAN "|   " GREEN "1." WHITE "  Them cong thuc                " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "2." WHITE "  Xoa cong thuc                 " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "3." WHITE "  Sua cong thuc                 " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "4." WHITE "  Tim kiem cong thuc            " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "5." WHITE "  Xem danh sach cong thuc       " RESET CYAN "|\n" RESET);
-    printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
-    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "+-------------------------------------+\n" RESET);
+    printf(CYAN "|   " DIM "0.  Quay lai                       " RESET CYAN "|\n" RESET);
+    printf(CYAN "+-------------------------------------+\n" RESET);
     printf(CYAN "\n  " RESET BOLD "Lua chon: " RESET);
 }
 

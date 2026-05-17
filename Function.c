@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <conio.h>
 #include "Function.h"
 
 #define RED     "\033[31m"
@@ -126,14 +127,14 @@ static void printChoiceMenu() {
     printf("\n");
     
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " BOLD YELLOW "  DANH SACH MON HOC            " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "        DANH SACH MON HOC          " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " GREEN "1." WHITE "  Giai tich                     " RESET CYAN "|\n" RESET);
-    printf(CYAN "|   " GREEN "2." WHITE "  Vat ly                        " RESET CYAN "|\n" RESET);
-    printf(CYAN "|   " GREEN "3." WHITE "  Xac suat thong ke             " RESET CYAN "|\n" RESET);
-    printf(CYAN "|   " GREEN "4." WHITE "  Kinh te chinh tri             " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "1." WHITE "  Giai tich                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "2." WHITE "  Vat ly                         " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "3." WHITE "  Xac suat thong ke              " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "4." WHITE "  Kinh te chinh tri              " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " DIM "0.  Quay lai                       " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "\n  " RESET BOLD "Chon mon hoc (0-4): " RESET);
 }
@@ -278,6 +279,8 @@ void TimCongThucTheoTen(char *nameFile,char *tenMon) {
     }
     FlushStdin();
     char tenTim[100];
+    system("cls");
+    printf("\nBan da chon: " GREEN "TIM KIEM CONG THUC THEO TEN" RESET " - Mon: " YELLOW "%s\n" RESET, tenMon);
     printf("  Nhap ten cong thuc can tim: ");
     if (fgets(tenTim, sizeof(tenTim), stdin) == NULL) { FreeList(List); return; }
     tenTim[strcspn(tenTim, "\n")] = '\0';
@@ -309,4 +312,6 @@ void TimCongThucTheoTen(char *nameFile,char *tenMon) {
         printf( RED " [LOI] Khong tim thay cong thuc nao voi tu khoa: '%s'\n", tenTim);
     else
         printf( GREEN " [THANH CONG] Tim thay %d ket qua. Da luu vao 'DisplayData.txt'.\n", found);
+        printf("\n  Nhan enter de tiep tuc ..."); 
+        _getch();
 }

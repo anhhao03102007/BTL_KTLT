@@ -14,6 +14,17 @@
 #define GREEN   "\033[32m"
 #define CYAN    "\033[36m"
 // Hàm phụ trợ xóa bộ đệm bàn phím
+
+#define RESET   "\033[0m"
+#define BOLD    "\033[1m"
+#define DIM     "\033[2m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[97m"
+
+
 void xoaBoDemDauVao(void) {
     int kyTu;
     while ((kyTu = getchar()) != '\n' && kyTu != EOF) {}
@@ -40,25 +51,24 @@ void hienThiMenuChinh() {
         if (trangThai != 1) {
             printf("\n" RED "[LOI] Dau vao khong hop le. Vui long nhap ky tu so!" RESET "\n");
             xoaBoDemDauVao();
-            printf("Nhấn enter de thu lai...");
-            _getch(); 
-            continue; 
-        }
-
-        if (luaChon < 0 || luaChon > 2) {
-            printf("\n" RED "[LOI] Lua chon khong ton tai. Vui long chon tu 0 den 2!" RESET "\n");
-            printf("Nhấn enter de thu lai...");
-            _getch(); 
+            printf(DIM "Nhan enter de thu lai..." RESET);
+            _getch();
             continue;
         }
 
-        // Xử lý lựa chọn
+        if (luaChon < 0 || luaChon > 2) {
+            printf(RED "\n[LOI] Lua chon khong ton tai. Vui long chon tu 0 den 2!\n" RESET);
+            printf(DIM "Nhan enter de thu lai..." RESET);
+            _getch();
+            continue;
+        }
+
         switch (luaChon) {
             case 1:
                 if (dangNhapQuanTriVien()) {
-                    Admin(); 
+                    Admin();
                 } else {
-                    printf("\n[THAT BAI] Dang nhap Admin that bai!\n");
+                    printf(RED "\n[THAT BAI] Dang nhap Admin that bai!\n" RESET);
                     _getch();
                 }
                 break;
@@ -66,12 +76,11 @@ void hienThiMenuChinh() {
                 User();
                 break;
             case 0:
-                printf("\nCam on ban da su dung chuong trinh. Tam biet!\n");
+                printf(GREEN "\nCam on ban da su dung chuong trinh. Tam biet!\n" RESET);
                 exit(0);
         }
     }
 }
-
 
 int dangNhapQuanTriVien() {
     char matKhau[50];
@@ -89,12 +98,10 @@ int dangNhapQuanTriVien() {
         return 1; 
     } else {
         printf("\n" RED "[THAT BAI] Mat khau khong chinh xac!" RESET "\n");
-        printf("Nhan Enter de thu lai...");
+        printf(YELLOW "Nhan Enter de thu lai..." RESET);
         _getch();
         return 0; 
     }
 }
-
-
 
 
