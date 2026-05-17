@@ -8,7 +8,6 @@ void ChuanHoaTen(char *ten);
 void ThemCongThuc(char *nameFile,char *tenMon);
 void XoaCongThuc(char *nameFile,char *tenMon);
 void SuaCongThuc(char *nameFile,char *tenMon);
-void TimCongThucTheoTen(char *nameFile,char *tenMon);
 
 void Admin();
 

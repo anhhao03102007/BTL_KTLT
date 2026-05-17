@@ -279,6 +279,8 @@ void TimCongThucTheoTen(char *nameFile,char *tenMon) {
     }
     FlushStdin();
     char tenTim[100];
+    system("cls");
+    printf("\nBan da chon: " GREEN "TIM KIEM CONG THUC THEO TEN" RESET " - Mon: " YELLOW "%s\n" RESET, tenMon);
     printf("  Nhap ten cong thuc can tim: ");
     if (fgets(tenTim, sizeof(tenTim), stdin) == NULL) { FreeList(List); return; }
     tenTim[strcspn(tenTim, "\n")] = '\0';
@@ -310,4 +312,6 @@ void TimCongThucTheoTen(char *nameFile,char *tenMon) {
         printf( RED " [LOI] Khong tim thay cong thuc nao voi tu khoa: '%s'\n", tenTim);
     else
         printf( GREEN " [THANH CONG] Tim thay %d ket qua. Da luu vao 'DisplayData.txt'.\n", found);
+        printf("\n  Nhan enter de tiep tuc ..."); 
+        _getch();
 }
