@@ -26,7 +26,7 @@ static void getFilePath(int mon, char *fileMocHoc,char *tenMon) {
             strcpy(tenMon, "Vat ly"); 
             break;
         case 3: 
-            strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); 
+            strcpy(fileMocHoc, "data/Probability_Statistics.txt"); 
             strcpy(tenMon, "Xac suat Thong ke");  
             break;
         case 4: 
