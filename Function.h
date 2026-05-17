@@ -6,7 +6,7 @@
  * ============================================================ */
 typedef struct Formula {
     char ten[100];
-    char congthuc[100];
+    char congthuc[256];
     struct Formula *next;
 } Formula;
 

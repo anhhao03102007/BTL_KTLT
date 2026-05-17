@@ -1,3 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <windows.h>
+#include "Menu.h"
+#include "Admin.h"
+#include "User.h"
+
 #define RESET   "\033[0m"
 #define BOLD    "\033[1m"
 #define RED     "\033[31m"
@@ -67,11 +75,7 @@ int main() {
 
         switch (choice) {
             case 1:
-                if (dangNhapQuanTriVien()) {
-                    Admin();
-                } else {
-                    printf("\n[THAT BAI] Dang nhap Admin that bai. Vui long thu lai!\n");
-                }
+                Admin();
                 break;
             case 2:
                 User();
