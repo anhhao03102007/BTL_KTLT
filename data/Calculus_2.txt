@@ -29,7 +29,7 @@ Do dai duong cong | L = ∫_a^b √(1 + [y']^2) dx
 Dien tich be mat quay | S = 2π ∫_a^b y √(1 + [y']^2) dx
 Tich phan hep | ∫_a^b f(x) dx = lim_{n→∞} Σ f(x_i^*) Δx
 Chuoi mu | Σ_{n=0}^∞ x^n = 1/(1-x), 
-Chuoi Taylor | Σ_{n=0}^∞ f^{(n)}(a)/n! (x-a)^n
+Chuoi taylor | Σ_{n=0}^∞ f^{(n)}(a)/n! (x-a)^n
 Chuoi Maclaurin | Σ_{n=0}^∞ f^{(n)}(0)/n! x^n
 Gioi han day | lim_{n→∞} a_n = L
 Tieu chuan Cauchy | ∀ε>0 ∃N: 
@@ -43,9 +43,9 @@ Tich phan chuoi | ∫ Σ a_n(x-a)^n dx = Σ a_n (x-a)^{n+1}/(n+1)
 Dinh ly gia tri trung binh | ∫_a^b f(x) dx = f(c)(b-a) voi c ∈ (a,b)
 Tich phan lien tuc | Neu f lien tuc tren [a,b] thi ∫_a^b f(x) dx ton tai
 Gioi han tien | lim_{x→a} [f(x)+g(x)] = lim f + lim g
-He Taylor ham e^x | e^x = Σ_{n=0}^∞ x^n/n!
-He Taylor ham sin x | sin x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1)!
-He Taylor ham cos x | cos x = Σ_{n=0}^∞ (-1)^n x^{2n}/(2n)!
-He Taylor ham ln(1+x) | ln(1+x) = Σ_{n=1}^∞ (-1)^{n-1} x^n/n, 
-He Taylor ham arctan x | arctan x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1), 
-Ph�p c?ng | 1 + 1 = 2
+He taylor ham e^x | e^x = Σ_{n=0}^∞ x^n/n!
+He taylor ham sin x | sin x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1)!
+He taylor ham cos x | cos x = Σ_{n=0}^∞ (-1)^n x^{2n}/(2n)!
+He taylor ham ln(1+x) | ln(1+x) = Σ_{n=1}^∞ (-1)^{n-1} x^n/n, 
+He taylor ham arctan x | arctan x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1), 
+A | b

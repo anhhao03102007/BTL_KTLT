@@ -261,9 +261,13 @@ void XuatDanhSachCongThuc(char *nameFile) {
         return;
     }
     DisplayOutputList(List, "DisplayData.txt");
-    printf("\n  [OK] Da luu ban in vao 'DisplayData.txt'\n");
+    
     
     FreeList(List);
+    printf("\nBan da chon: " GREEN "XUAT DANH SACH CONG THUC" RESET " - File: " YELLOW "%s\n" RESET, nameFile);
+    printf("\n  [OK] Da luu ban in vao 'DisplayData.txt'\n");
+    printf("  Nhan enter de tiep tuc ...");
+    _getch();
 }
 /* ============================================================
  *  TIM KIEM CONG THUC THEO TEN
