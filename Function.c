@@ -236,12 +236,11 @@ void DisplayOutput(Formula CongThuc, char *nameFile) {
     Formula *current = List;
     int total = 0;
     while (current != NULL) {
-        fprintf(fout, "  | %-3d | %-30s | %-19s |\n",
-                total++, current->ten, current->congthuc);
+        fprintf(fout, "  | %-3d | %-30s | %-19s |\n", total++, current->ten, current->congthuc);
+        fprintf(fout, "  +-----+--------------------------------+--------------------------------------------------------------+\n");
         current = current->next;
     }
 
-    fprintf(fout, "  +-----+--------------------------------+--------------------------------------------------------------+\n");
     fprintf(fout, "  | Tong so: %-3d cong thuc                                                                             |\n", total);
     fprintf(fout, "  +-----+--------------------------------+--------------------------------------------------------------+\n");
 
