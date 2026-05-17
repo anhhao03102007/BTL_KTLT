@@ -61,11 +61,8 @@ void hienThiMenuChinh() {
             case 1:
                 if (dangNhapQuanTriVien()) {
                     Admin();
-                } else {
-                    printf(RED "\n[THAT BAI] Dang nhap Admin that bai!\n" RESET);
-                    _getch();
+                    break; 
                 }
-                break;
             case 2:
                 User();
                 break;
