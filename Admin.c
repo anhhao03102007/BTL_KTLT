@@ -54,7 +54,7 @@ static void printAdminMenu() {
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "\n➤  " RESET BOLD "Lua chon: " RESET);
+    printf(CYAN "\n  " RESET BOLD "Lua chon: " RESET);
 }
 
 

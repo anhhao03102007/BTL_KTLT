@@ -126,7 +126,7 @@ static void printChoiceMenu() {
     printf("\n");
     
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " BOLD YELLOW "📚  DANH SACH MON HOC            " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "  DANH SACH MON HOC            " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "|   " GREEN "1." WHITE "  Giai tich                     " RESET CYAN "|\n" RESET);
     printf(CYAN "|   " GREEN "2." WHITE "  Vat ly                        " RESET CYAN "|\n" RESET);
@@ -135,7 +135,7 @@ static void printChoiceMenu() {
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "\n➤  " RESET BOLD "Chon mon hoc (0-4): " RESET);
+    printf(CYAN "\n  " RESET BOLD "Chon mon hoc (0-4): " RESET);
 }
 
 int Choice() {

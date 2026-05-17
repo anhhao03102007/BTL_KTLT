@@ -8,7 +8,11 @@
 #include "Admin.h"
 #include "User.h"
 
-
+#define RED     "\033[31m"
+#define RESET   "\033[0m"
+#define YELLOW  "\033[33m"
+#define GREEN   "\033[32m"
+#define CYAN    "\033[36m"
 // Hàm phụ trợ xóa bộ đệm bàn phím
 void xoaBoDemDauVao(void) {
     int kyTu;
@@ -22,19 +26,19 @@ void hienThiMenuChinh() {
     while (1) { 
         system("cls"); 
         
-        printf("\n========================================\n");
-        printf("       HE THONG QUAN LY CONG THUC       \n");
-        printf("========================================\n");
-        printf("1. Dang nhap tu cach Quan tri vien (Admin)\n");
-        printf("2. Dang nhap tu cach Nguoi dung (User)\n");
-        printf("0. Thoat chuong trinh\n");
-        printf("========================================\n");
+        printf("\n" CYAN "========================================" RESET "\n");
+        printf("       HE THONG QUAN LY CONG THUC       ");
+        printf("\n" CYAN "========================================" RESET "\n");
+        printf(GREEN "1." RESET " Dang nhap tu cach Quan tri vien (Admin)\n");
+        printf(GREEN "2." RESET " Dang nhap tu cach Nguoi dung (User)\n");
+        printf(GREEN "0." RESET " Thoat chuong trinh");
+        printf("\n" CYAN "========================================" RESET "\n");
         printf("Vui long nhap lua chon cua ban (0-2): ");
 
         trangThai = scanf("%d", &luaChon);
 
         if (trangThai != 1) {
-            printf("\n[LOI] Dau vao khong hop le. Vui long nhap ky tu so!\n");
+            printf("\n" RED "[LOI] Dau vao khong hop le. Vui long nhap ky tu so!" RESET "\n");
             xoaBoDemDauVao();
             printf("Nhấn enter de thu lai...");
             _getch(); 
@@ -42,7 +46,7 @@ void hienThiMenuChinh() {
         }
 
         if (luaChon < 0 || luaChon > 2) {
-            printf("\n[LOI] Lua chon khong ton tai. Vui long chon tu 0 den 2!\n");
+            printf("\n" RED "[LOI] Lua chon khong ton tai. Vui long chon tu 0 den 2!" RESET "\n");
             printf("Nhấn enter de thu lai...");
             _getch(); 
             continue;
@@ -73,18 +77,18 @@ int dangNhapQuanTriVien() {
     char matKhau[50];
     const char matKhauDung[] = "admin123"; 
     
-    printf("\n--- XAC THUC QUAN TRI VIEN ---\n");
+    printf("\n" YELLOW "--- XAC THUC QUAN TRI VIEN ---" RESET "\n");
     printf("Nhap mat khau: ");
     
     xoaBoDemDauVao();
     scanf("%49s", matKhau); 
 
     if (strcmp(matKhau, matKhauDung) == 0) {
-        printf("\n[THANH CONG] Dang nhap Admin thanh cong!\n");
+        printf("\n" GREEN "[THANH CONG] Dang nhap Admin thanh cong!" RESET "\n");
         Sleep(1000);        
         return 1; 
     } else {
-        printf("\n[THAT BAI] Mat khau khong chinh xac!\n");
+        printf("\n" RED "[THAT BAI] Mat khau khong chinh xac!" RESET "\n");
         printf("Nhan Enter de thu lai...");
         _getch();
         return 0; 
