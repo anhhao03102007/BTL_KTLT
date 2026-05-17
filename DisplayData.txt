@@ -1,28 +1,34 @@
-  +-----+--------------------------------+---------------------+
+  +-----+--------------------------------+-------------------------------------------------------------+
   | STT | Ten cong thuc                  | Cong thuc           |
-  +-----+--------------------------------+---------------------+
-  | 0   | Xac suat hop                   | P(A ∪ B) = P(A) + P(B) - P(A ∩ B) |
-  | 1   | Xac suat giao nhau             | P(A ∩ B) = P(A) P(B)  (neu A va B doc lap) |
-  | 2   | Xac suat co dieu kien          | P(A dieukien B) = P(A ∩ B) / P(B) |
-  | 3   | Ham phan phoi                  | F(x) = P(X ≤ x)   |
-  | 4   | Mat do phan phoi               | f(x) = dF(x) / dx   |
-  | 5   | Ky vong                        | E[X] = Σ x P(X = x) hoac ∫ x f(x) dx |
-  | 6   | Phuong sai                     | Var(X) = E[X^2] - (E[X])^2 |
-  | 7   | Do lech chuan                  | σ = √(Var(X))    |
-  | 8   | Bien doi tuyen tinh            | E[aX + b] = a E[X] + b |
-  | 9   | Bien so tuyen tinh             | Var(aX + b) = a^2 Var(X) |
-  | 10  | Hop mat                        | P(A ∩ B) = P(A) P(B dieukien A) |
-  | 11  | He so tuong quan               | ρ = Cov(X,Y) / (σ_X σ_Y) |
-  | 12  | Covariance                     | Cov(X,Y) = E[(X - E[X])(Y - E[Y])] |
-  | 13  | Tong bien ngau nhien           | Var(X + Y) = Var(X) + Var(Y) + 2 Cov(X,Y) |
-  | 14  | Phan phoi Binomial             | P(X=k) = C(n,k) p^k (1-p)^{n-k} |
-  | 15  | Phan phoi Poisson              | P(X=k) = e^{-λ} λ^k / k! |
-  | 16  | Phan phoi chuan                | f(x) = 1 / (σ √(2π)) e^{-(x-μ)^2 / (2 σ^2)} |
-  | 17  | Bien doi chuan                 | Z = (X - μ) / σ   |
-  | 18  | Xap xi chuan                   | Khi n lon, Binomial ≈ Normal |
-  | 19  | Ky vong tong                   | E[Σ X_i] = Σ E[X_i] |
-  | 20  | Phuong sai tong                | Var(Σ X_i) = Σ Var(X_i) neu doc lap |
-  | 21  | Mo phong mau                   | X_bar = (1/n) Σ X_i |
-  +-----+--------------------------------+---------------------+
-  | Tong so: 22  cong thuc                                    |
-  +-----+--------------------------------+---------------------+
+  +-----+--------------------------------+-------------------------------------------------------------+
+  | 0   | Tich luy gia tri               | GDP = C + I + G + (X - M) |
+  | 1   | Tieu dung                      | C = a + b Y_d       |
+  | 2   | Thu nhap rong                  | Y_d = Y - T         |
+  | 3   | Luu tru                        | S = Y - C - T       |
+  | 4   | Dau tu                         | I = s Y             |
+  | 5   | Cau cung toan xa hoi           | Y = C + I + G + NX  |
+  | 6   | Can bang ngan sach             | G - T = S - I       |
+  | 7   | Chat luong tien te             | M V = P Y           |
+  | 8   | Ty le luu thong                | V = P Y / M         |
+  | 9   | Chinh sach tien te             | M = k P Y           |
+  | 10  | Ty le thue                     | T = t Y             |
+  | 11  | Loi ich bien                   | MU = dU / dQ        |
+  | 12  | Duoc dong tien                 | π = TR - TC        |
+  | 13  | Tien cong ban                  | TR = P Q            |
+  | 14  | Chi phi bien                   | MC = dTC / dQ       |
+  | 15  | Chi phi co dinh                | AFC = FC / Q        |
+  | 16  | Chi phi trung binh             | AC = TC / Q         |
+  | 17  | Loi nhuan buoc                 | MR = MC             |
+  | 18  | Thi tran can doi               | D = S               |
+  | 19  | Ty le thue hoan lai            | r = CF / I          |
+  | 20  | Ty le toc do tang truong       | g = (Y_t - Y_{t-1}) / Y_{t-1} |
+  | 21  | Chi phi co hoi                 | OC = gia tri cao nhat bi bo lo |
+  | 22  | Cung tien tren thi truong      | M_s = M_d           |
+  | 23  | Luong lao dong                 | w = MPL             |
+  | 24  | Nang suat                      | MPL = dQ / dL       |
+  | 25  | Hieu suat toan xa hoi          | E = U_1 + U_2       |
+  | 26  | Chinh sach fiscal              | G tang hoac T giam  |
+  | 27  | Cau truc lon                   | P = MC o thi truong hoan hao can |
+  +-----+--------------------------------+--------------------------------------------------------------+
+  | Tong so: 28  cong thuc                                                                             |
+  +-----+--------------------------------+--------------------------------------------------------------+
