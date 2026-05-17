@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
+#include <windows.h>
 #include "Admin.h"
 #include "Function.h"
 
+#define RED     "\033[31m"
 #define RESET   "\033[0m"
 #define BOLD    "\033[1m"
 #define DIM     "\033[2m"
@@ -24,7 +27,7 @@ static void getFilePath(int mon, char *fileMocHoc) {
 
 static void printAdminMenu() {
     printf("\n");
-    // Sử dụng dấu + và - để tạo khung không bao giờ lỗi font
+    system("cls");
     printf(CYAN "+--------------------------------------+\n" RESET);
     printf(CYAN "|   " BOLD YELLOW "   ADMIN MENU                     " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
@@ -44,40 +47,59 @@ static void printAdminMenu() {
  *  THEM CONG THUC
  * ============================================================ */
 void ThemCongThuc(char *nameFile) {
-
+    if (nameFile == NULL) return;
+    
     FlushStdin();
-    FILE *fout = fopen(nameFile, "a");
-    if (fout == NULL) {
-        printf("  Loi: Khong the mo file: %s\n", nameFile);
-        return;
-    }
+    system("cls");
+    printf("\nBan da chon chuc nang " GREEN "THEM CONG THUC" RESET " cho mon hoc: " YELLOW "%s\n" RESET, nameFile);
 
     char ten[100], congthuc[100];
 
+    // 1. Nhập và chuẩn hóa tên
     printf("  Nhap ten cong thuc : ");
-    if (fgets(ten, sizeof(ten), stdin) == NULL) { fclose(fout); return; }
+    if (fgets(ten, sizeof(ten), stdin) == NULL) return;
     ten[strcspn(ten, "\n")] = '\0';
-
     if (ten[0] == '\0') {
-        printf("  Ten cong thuc khong duoc de trong!\n");
-        fclose(fout);
+        printf(RED "  [LOI] Ten khong duoc de trong!\n" RESET);
         return;
     }
     ChuanHoaTen(ten);
 
-    printf("  Nhap cong thuc     : ");
-    if (fgets(congthuc, sizeof(congthuc), stdin) == NULL) { fclose(fout); return; }
-    congthuc[strcspn(congthuc, "\n")] = '\0';
+    Formula *List = NULL;
+    LoadFile(&List, nameFile); 
+    Formula *temp = List;
+    while (temp != NULL) {
+        if (strcmp(temp->ten, ten) == 0) {
+            printf(RED "  [LOI] Cong thuc '%s' da ton tai!\n" RESET, ten);
+            FreeList(List);
+            printf("  Nhan enter de tiep tuc...");
+            _getch();
+            return;
+        }
+        temp = temp->next;
+    }
+    FreeList(List); 
 
+    // 3. Nhập công thức
+    printf("  Nhap noi dung      : ");
+    if (fgets(congthuc, sizeof(congthuc), stdin) == NULL) return;
+    congthuc[strcspn(congthuc, "\n")] = '\0';
     if (congthuc[0] == '\0') {
-        printf("  Cong thuc khong duoc de trong!\n");
-        fclose(fout);
+        printf(RED "  [LOI] Noi dung khong duoc de trong!\n" RESET);
         return;
     }
 
+    FILE *fout = fopen(nameFile, "a");
+    if (fout == NULL) {
+        printf(RED "  [LOI] Khong the mo file!\n" RESET);
+        return;
+    }
     fprintf(fout, "%s | %s\n", ten, congthuc);
     fclose(fout);
-    printf("  Da them cong thuc '%s' vao file '%s' thanh cong!\n", ten, nameFile);
+
+    printf(GREEN "\n  => Da them '%s' thanh cong!\n" RESET, ten);
+    printf("  Nhan enter de tiep tuc...");
+    _getch();
 }
 
 /* ============================================================
@@ -86,56 +108,67 @@ void ThemCongThuc(char *nameFile) {
 void XoaCongThuc(char *nameFile) {
     if (nameFile == NULL) return;
 
-    FlushStdin();
-    char ten[100];
-    printf("  Nhap ten cong thuc can xoa: ");
-    if (fgets(ten, sizeof(ten), stdin) == NULL) return;
-    FlushStdin();
-    ten[strcspn(ten, "\n")] = '\0';
-
-    if (ten[0] == '\0') {
-        printf("  Ten cong thuc khong duoc de trong!\n");
-        return;
-    }
-    ChuanHoaTen(ten);
-
     Formula *List = NULL;
-    LoadFile(&List, nameFile);
+    LoadFile(&List, nameFile); 
+    
+    system("cls");
+    printf("\n    Ban da chon chuc nang " GREEN "XOA CONG THUC" RESET " cho mon hoc: " YELLOW "%s\n" RESET, nameFile);
 
     if (List == NULL) {
-        printf("  Khong co du lieu de xoa!\n");
+        printf(RED "  [LOI] Khong co du lieu de xoa!\n" RESET);
+        printf("  Nhan enter de quay lai...");
+        _getch();
         return;
     }
 
-    Formula *cur = List;
-    int found = 0;
-    while (cur) {
-        if (strcmp(cur->ten, ten) == 0) { found = 1; break; }
-        cur = cur->next;
+    // Hiển thị danh sách hiện có
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|      " BOLD YELLOW "DANH SACH CONG THUC" RESET CYAN "             |\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    Formula *temp = List;
+    int stt = 1;
+    while (temp) {
+        printf(CYAN "| " GREEN "%-3d." WHITE " %-30s \n" RESET, stt++, temp->ten);
+        temp = temp->next;
     }
+    printf(CYAN "+--------------------------------------+\n" RESET);
+
+    char ten[100];
+    FlushStdin();
+    printf("\n  Nhap ten cong thuc can xoa: ");
+    if (fgets(ten, sizeof(ten), stdin) == NULL) { FreeList(List); return; }
+    ten[strcspn(ten, "\n")] = '\0';
+    ChuanHoaTen(ten);
+
+    if (ten[0] == '\0') {
+        printf(RED "  [LOI] Ten khong duoc de trong!\n" RESET);
+        FreeList(List);
+        return;
+    }
+
+    int found = XoaNode(&List, ten); 
+    
+
     if (!found) {
-        printf("  Khong tim thay cong thuc '%s'!\n", ten);
-        FreeList(List);
-        return;
+        printf(RED "  [LOI] Khong tim thay cong thuc '%s'!\n" RESET, ten);
+    } else {
+        FILE *fout = fopen(nameFile, "w");
+        if (fout == NULL) {
+            printf(RED "  [LOI] Khong the ghi file!\n" RESET);
+        } else {
+            temp = List;
+            while (temp != NULL) {
+                fprintf(fout, "%s | %s\n", temp->ten, temp->congthuc);
+                temp = temp->next;
+            }
+            fclose(fout);
+            printf(GREEN "  => Da xoa va cap nhat file thanh cong!\n" RESET);
+        }
     }
 
-    XoaNode(&List, ten);
-
-    FILE *fout = fopen(nameFile, "w");
-    if (fout == NULL) {
-        printf("  Loi: Khong the ghi file: %s\n", nameFile);
-        FreeList(List);
-        return;
-    }
-
-    Formula *current = List;
-    while (current != NULL) {
-        fprintf(fout, "%s | %s\n", current->ten, current->congthuc);
-        current = current->next;
-    }
-    fclose(fout);
-    FreeList(List);
-    printf("  Da xoa cong thuc '%s' va cap nhat file '%s' thanh cong!\n", ten, nameFile);
+    FreeList(List); 
+    printf("\n  Nhan enter de tiep tuc ...");
+    _getch();
 }
 
 /* ============================================================
@@ -144,113 +177,88 @@ void XoaCongThuc(char *nameFile) {
 void SuaCongThuc(char *nameFile) {
     if (nameFile == NULL) return;
 
-    FlushStdin();
     Formula *List = NULL;
     LoadFile(&List, nameFile);
+    system("cls");
 
     if (List == NULL) {
-        printf("  Khong co du lieu trong file: %s\n", nameFile);
+        printf(RED "  [LOI] Khong co du lieu trong file: %s\n" RESET, nameFile);
         return;
     }
 
+    printf("\nBan da chon: " GREEN "SUA CONG THUC" RESET " - Mon: " YELLOW "%s\n" RESET, nameFile);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+    printf(CYAN "|      " BOLD YELLOW "DANH SACH CONG THUC" RESET CYAN "             |\n" RESET);
+    printf(CYAN "+--------------------------------------+\n" RESET);
+
+    Formula *current = List;
+    int stt = 1;
+    while (current) {
+        printf(CYAN "| " GREEN "%-3d." WHITE " %-20s | %-10s\n" RESET, stt++, current->ten, current->congthuc);
+        current = current->next;
+    }
+    printf(CYAN "+--------------------------------------+\n" RESET);
+
     char tenTimKiem[100];
-    printf("  Nhap ten cong thuc can sua: ");
-    if (fgets(tenTimKiem, sizeof(tenTimKiem), stdin) == NULL) { FreeList(List); return; }
+    printf("\n  Nhap ten cong thuc can sua: ");
+    // Khong can FlushStdin o day neu truoc do ban da xoa bo dem roi
+    if (fgets(tenTimKiem, sizeof(tenTimKiem), stdin) == NULL) {
+        FreeList(List);
+        return;
+    }
+    // Xoa ky tu xuong dong quan trong de so sanh chuoi
     tenTimKiem[strcspn(tenTimKiem, "\n")] = '\0';
 
-    if (tenTimKiem[0] == '\0') {
-        printf("  Ten cong thuc khong duoc de trong!\n");
+    if (strlen(tenTimKiem) == 0) {
+        printf(RED "  [LOI] Ten khong duoc de trong!\n" RESET);
         FreeList(List);
         return;
     }
     ChuanHoaTen(tenTimKiem);
 
     int found = 0;
-    Formula *current = List;
+    current = List; // Gan lai current, khong khai bao moi
     while (current != NULL) {
         if (strcmp(current->ten, tenTimKiem) == 0) {
-            printf("  Tim thay: %-30s | %s\n", current->ten, current->congthuc);
-            printf("  Nhap cong thuc moi (Enter de giu nguyen): ");
+            found = 1;
+            printf(GREEN "  Tim thay: %s | %s\n" RESET, current->ten, current->congthuc);
+            printf("  Nhap cong thuc moi (Bo trong de giu nguyen): ");
 
             char congThucMoi[100];
-            if (fgets(congThucMoi, sizeof(congThucMoi), stdin) == NULL) break;
-            congThucMoi[strcspn(congThucMoi, "\n")] = '\0';
-
-            if (strlen(congThucMoi) > 0) {
-                strcpy(current->congthuc, congThucMoi);
-                printf("  Da cap nhat: %-30s | %s\n", current->ten, current->congthuc);
-            } else {
-                printf("  Giu nguyen cong thuc cu.\n");
+            if (fgets(congThucMoi, sizeof(congThucMoi), stdin)) {
+                congThucMoi[strcspn(congThucMoi, "\n")] = '\0';
+                if (strlen(congThucMoi) > 0) {
+                    strcpy(current->congthuc, congThucMoi);
+                    printf(YELLOW "  => Da cap nhat thanh cong!\n" RESET);
+                } else {
+                    printf("  => Giu nguyen cong thuc cu.\n");
+                }
             }
-            found = 1;
             break;
         }
         current = current->next;
     }
 
-    if (!found)
-        printf("  Khong tim thay cong thuc '%s'!\n", tenTimKiem);
-
-    FILE *fout = fopen(nameFile, "w");
-    if (fout == NULL) {
-        printf("  Loi: Khong the ghi file: %s\n", nameFile);
-        FreeList(List);
-        return;
-    }
-
-    current = List;
-    while (current != NULL) {
-        fprintf(fout, "%s | %s\n", current->ten, current->congthuc);
-        current = current->next;
-    }
-    fclose(fout);
-    FreeList(List);
-}
-
-/* ============================================================
- *  TIM CONG THUC THEO TEN
- * ============================================================ */
-void TimCongThucTheoTen(char *nameFile) {
-    Formula *List = NULL;
-    LoadFile(&List, nameFile);
-
-    if (List == NULL) {
-        printf("  Khong co du lieu de tim kiem!\n");
-        return;
-    }
-    FlushStdin();
-    char tenTim[100];
-    printf("  Nhap ten cong thuc can tim: ");
-    if (fgets(tenTim, sizeof(tenTim), stdin) == NULL) { FreeList(List); return; }
-    tenTim[strcspn(tenTim, "\n")] = '\0';
-
-    if (tenTim[0] == '\0') {
-        printf("  Ten cong thuc khong duoc de trong!\n");
-        FreeList(List);
-        return;
-    }
-    ChuanHoaTen(tenTim);
-
-    FILE *fout = fopen("DisplayData.txt", "w");
-    if (fout) fclose(fout);
-
-    int found = 0;
-    Formula *current = List;
-    while (current != NULL) {
-        if (strcmp(current->ten, tenTim) == 0) {
-            printf("  %-30s | %s\n", current->ten, current->congthuc);
-            DisplayOutput(*current, "DisplayData.txt");
-            found++;
+    if (!found) {
+        printf(RED "  [LOI] Khong tim thay cong thuc '%s'!\n" RESET, tenTimKiem);
+    } else {
+        // Chi ghi file neu co su thay doi de toi uu
+        FILE *fout = fopen(nameFile, "w");
+        if (fout == NULL) {
+            printf(RED "  Loi: Khong the ghi file!\n" RESET);
+        } else {
+            current = List;
+            while (current != NULL) {
+                fprintf(fout, "%s | %s\n", current->ten, current->congthuc);
+                current = current->next;
+            }
+            fclose(fout);
         }
-        current = current->next;
     }
 
     FreeList(List);
-
-    if (!found)
-        printf("  Khong tim thay cong thuc nao voi tu khoa: '%s'\n", tenTim);
-    else
-        printf("  Tim thay %d ket qua. Da luu vao 'DisplayData.txt'.\n", found);
+    printf("\n  Nhan enter de tiep tuc ...");
+    _getch(); 
 }
 
 /* ============================================================
@@ -259,15 +267,10 @@ void TimCongThucTheoTen(char *nameFile) {
 void Admin() {
     int choice = 0;
     char fileMocHoc[100];
-
+    system("cls");
     do {
         printAdminMenu();
-
-        if (scanf("%d", &choice) != 1) {
-            while (getchar() != '\n');
-            printf("  Vui long nhap so!\n");
-            continue;
-        }
+        scanf("%d", &choice);
         while (getchar() != '\n');
 
         if (choice == 0) break;

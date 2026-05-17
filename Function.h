@@ -15,13 +15,12 @@ typedef struct Formula {
  * ============================================================ */
 Formula *CreateNode(char *ten, char *congthuc);
 void ThemNode(Formula **head, char *ten, char *congthuc);
-void XoaNode(Formula **head, char *ten);
+int XoaNode(Formula **head, char *ten);
 void FreeList(Formula *head);
 
 /* ============================================================
  *  HAM TIEN ICH - CHUAN HOA CHUOI
  * ============================================================ */
-void ChuanHoa(char *name);
 void ChuanHoaTen(char *name);
 
 /* ============================================================

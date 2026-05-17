@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
+#include <windows.h>
 #include "Function.h"
 #include "Menu.h"
 #include "Admin.h"
@@ -13,13 +15,15 @@ void xoaBoDemDauVao(void) {
     while ((kyTu = getchar()) != '\n' && kyTu != EOF) {}
 }
 
-// Hàm hiển thị Menu chính
 void hienThiMenuChinh() {
     int luaChon;
     int trangThai;
-    do {
+
+    while (1) { 
+        system("cls"); 
+        
         printf("\n========================================\n");
-        printf("      HE THONG QUAN LY CONG THUC      \n");
+        printf("       HE THONG QUAN LY CONG THUC       \n");
         printf("========================================\n");
         printf("1. Dang nhap tu cach Quan tri vien (Admin)\n");
         printf("2. Dang nhap tu cach Nguoi dung (User)\n");
@@ -32,30 +36,39 @@ void hienThiMenuChinh() {
         if (trangThai != 1) {
             printf("\n[LOI] Dau vao khong hop le. Vui long nhap ky tu so!\n");
             xoaBoDemDauVao();
-            luaChon = -1; 
-        } else if (luaChon < 0 || luaChon > 2) {
-            printf("\n[LOI] Lua chon khong ton tai. Vui long chon tu 0 den 2!\n");
+            printf("Nhấn enter de thu lai...");
+            _getch(); 
+            continue; 
         }
-    } while (luaChon < 0 || luaChon > 2);
 
-    switch (luaChon) {
-        case 1:
-            if (dangNhapQuanTriVien()) {
-                Admin();
-            } else {
-                printf("\n[THAT BAI] Dang nhap Admin that bai. Vui long thu lai!\n");
-            }
-            break;
-        case 2:
-            User();
-            break;
-        case 0:
-            printf("\nCam on ban da su dung chuong trinh. Tam biet!\n");
-            exit(0);
+        if (luaChon < 0 || luaChon > 2) {
+            printf("\n[LOI] Lua chon khong ton tai. Vui long chon tu 0 den 2!\n");
+            printf("Nhấn enter de thu lai...");
+            _getch(); 
+            continue;
+        }
+
+        // Xử lý lựa chọn
+        switch (luaChon) {
+            case 1:
+                if (dangNhapQuanTriVien()) {
+                    Admin(); 
+                } else {
+                    printf("\n[THAT BAI] Dang nhap Admin that bai!\n");
+                    _getch();
+                }
+                break;
+            case 2:
+                User();
+                break;
+            case 0:
+                printf("\nCam on ban da su dung chuong trinh. Tam biet!\n");
+                exit(0);
+        }
     }
 }
 
-// Hàm xử lý logic đăng nhập cho Admin
+
 int dangNhapQuanTriVien() {
     char matKhau[50];
     const char matKhauDung[] = "admin123"; 
@@ -68,10 +81,13 @@ int dangNhapQuanTriVien() {
 
     if (strcmp(matKhau, matKhauDung) == 0) {
         printf("\n[THANH CONG] Dang nhap Admin thanh cong!\n");
-        return 1; // Đúng
+        Sleep(1000);        
+        return 1; 
     } else {
         printf("\n[THAT BAI] Mat khau khong chinh xac!\n");
-        return 0; // Sai
+        printf("Nhan Enter de thu lai...");
+        _getch();
+        return 0; 
     }
 }
 

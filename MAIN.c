@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include "Function.h"
 #include "Menu.h"
 #include "Admin.h"
@@ -20,11 +21,14 @@ void loadingAnimation() {
    }
    printf("] 100%%\n");
    printf("\n\n Completed !");
-   getchar();
+   printf("Nhan Enter de tiep tuc...");
+    _getch();
+   system("cls");
 }
 
 int main() {
     int choice;
+    system("cls");
     loadingAnimation();
     do {
         hienThiMenuChinh();

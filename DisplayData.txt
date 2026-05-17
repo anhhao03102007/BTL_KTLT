@@ -1,1 +1,28 @@
-
+  +-----+--------------------------------+---------------------+
+  | STT | Ten cong thuc                  | Cong thuc           |
+  +-----+--------------------------------+---------------------+
+  | 0   | Xac suat hop                   | P(A ∪ B) = P(A) + P(B) - P(A ∩ B) |
+  | 1   | Xac suat giao nhau             | P(A ∩ B) = P(A) P(B)  (neu A va B doc lap) |
+  | 2   | Xac suat co dieu kien          | P(A dieukien B) = P(A ∩ B) / P(B) |
+  | 3   | Ham phan phoi                  | F(x) = P(X ≤ x)   |
+  | 4   | Mat do phan phoi               | f(x) = dF(x) / dx   |
+  | 5   | Ky vong                        | E[X] = Σ x P(X = x) hoac ∫ x f(x) dx |
+  | 6   | Phuong sai                     | Var(X) = E[X^2] - (E[X])^2 |
+  | 7   | Do lech chuan                  | σ = √(Var(X))    |
+  | 8   | Bien doi tuyen tinh            | E[aX + b] = a E[X] + b |
+  | 9   | Bien so tuyen tinh             | Var(aX + b) = a^2 Var(X) |
+  | 10  | Hop mat                        | P(A ∩ B) = P(A) P(B dieukien A) |
+  | 11  | He so tuong quan               | ρ = Cov(X,Y) / (σ_X σ_Y) |
+  | 12  | Covariance                     | Cov(X,Y) = E[(X - E[X])(Y - E[Y])] |
+  | 13  | Tong bien ngau nhien           | Var(X + Y) = Var(X) + Var(Y) + 2 Cov(X,Y) |
+  | 14  | Phan phoi Binomial             | P(X=k) = C(n,k) p^k (1-p)^{n-k} |
+  | 15  | Phan phoi Poisson              | P(X=k) = e^{-λ} λ^k / k! |
+  | 16  | Phan phoi chuan                | f(x) = 1 / (σ √(2π)) e^{-(x-μ)^2 / (2 σ^2)} |
+  | 17  | Bien doi chuan                 | Z = (X - μ) / σ   |
+  | 18  | Xap xi chuan                   | Khi n lon, Binomial ≈ Normal |
+  | 19  | Ky vong tong                   | E[Σ X_i] = Σ E[X_i] |
+  | 20  | Phuong sai tong                | Var(Σ X_i) = Σ Var(X_i) neu doc lap |
+  | 21  | Mo phong mau                   | X_bar = (1/n) Σ X_i |
+  +-----+--------------------------------+---------------------+
+  | Tong so: 22  cong thuc                                    |
+  +-----+--------------------------------+---------------------+

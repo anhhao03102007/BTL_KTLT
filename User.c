@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#include <windows.h>
 #include "User.h"
 #include "Function.h"
 
@@ -26,19 +28,19 @@ static void getFilePath(int mon, char *fileMocHoc) {
 static void printMenu() {
     printf("\n");
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " BOLD YELLOW "   USER MENU                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " BOLD YELLOW "   USER MENU                       " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " GREEN "1." WHITE "  Xem danh sach cong thuc       " RESET CYAN "|\n" RESET);
-    printf(CYAN "|   " GREEN "2." WHITE "  Tim cong thuc theo mon hoc    " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "1." WHITE "  Xem danh sach cong thuc        " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " GREEN "2." WHITE "  Tim cong thuc theo mon hoc     " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "|   " DIM "0.  Quay lai                      " RESET CYAN "|\n" RESET);
+    printf(CYAN "|   " DIM "0.  Quay lai                       " RESET CYAN "|\n" RESET);
     printf(CYAN "+--------------------------------------+\n" RESET);
-    printf(CYAN "\n➤  " RESET BOLD "Lua chon: " RESET);
+    printf(CYAN "\n   " RESET BOLD "Lua chon: " RESET);
 }
 
 void User() {
     int choice = 0;
-
+    system("cls");
     do {
         printMenu();
         scanf("%d", &choice);
@@ -49,6 +51,7 @@ void User() {
 
         switch (choice) {
             case 1:
+                system("cls");
                 mon = Choice();
                 if (mon == 0) { printf("  Quay lai menu User.\n"); continue; }
                 getFilePath(mon, fileMocHoc);
@@ -57,6 +60,7 @@ void User() {
                 break;
 
             case 2:
+                system("cls");
                 mon = Choice();
                 if (mon == 0) { printf("  Quay lai menu User.\n"); continue; }
                 getFilePath(mon, fileMocHoc);
