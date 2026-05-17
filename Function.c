@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "Function.h"
 
+#define RED     "\033[31m"
 #define RESET   "\033[0m"
 #define BOLD    "\033[1m"
 #define DIM     "\033[2m"
@@ -264,8 +265,11 @@ void XuatDanhSachCongThuc(char *nameFile) {
     
     FreeList(List);
 }
+/* ============================================================
+ *  TIM KIEM CONG THUC THEO TEN
+ * ============================================================ */
 
-void TimCongThucTheoTen(char *nameFile) {
+void TimCongThucTheoTen(char *nameFile,char *tenMon) {
     Formula *List = NULL;
     LoadFile(&List, nameFile);
 
@@ -303,7 +307,7 @@ void TimCongThucTheoTen(char *nameFile) {
     FreeList(List);
 
     if (!found)
-        printf("  Khong tim thay cong thuc nao voi tu khoa: '%s'\n", tenTim);
+        printf( RED " [LOI] Khong tim thay cong thuc nao voi tu khoa: '%s'\n", tenTim);
     else
-        printf("  Tim thay %d ket qua. Da luu vao 'DisplayData.txt'.\n", found);
+        printf( GREEN " [THANH CONG] Tim thay %d ket qua. Da luu vao 'DisplayData.txt'.\n", found);
 }

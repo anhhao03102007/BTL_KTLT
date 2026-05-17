@@ -5,10 +5,10 @@
  *  CRUD - QUAN LY CONG THUC (CHI ADMIN MOI DUNG)
  * ============================================================ */
 void ChuanHoaTen(char *ten);
-void ThemCongThuc(char *nameFile);
-void XoaCongThuc(char *nameFile);
-void SuaCongThuc(char *nameFile);
-void TimCongThucTheoTen(char *nameFile);
+void ThemCongThuc(char *nameFile,char *tenMon);
+void XoaCongThuc(char *nameFile,char *tenMon);
+void SuaCongThuc(char *nameFile,char *tenMon);
+void TimCongThucTheoTen(char *nameFile,char *tenMon);
 
 void Admin();
 

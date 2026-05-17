@@ -1,5 +1,5 @@
 Nguyen ham co ban | ∫ x^n dx = x^{n+1}/(n+1) + C, n ≠ -1
-Nguyen ham 1/x | ∫ 1/x dx = ln|x| + C
+Nguyen ham 1/x | ∫ 1/x dx = ln
 Nguyen ham e^x | ∫ e^x dx = e^x + C
 Nguyen ham a^x | ∫ a^x dx = a^x / ln a + C
 Nguyen ham sin x | ∫ sin x dx = -cos x + C
@@ -13,8 +13,8 @@ Tich phan cos^2 | ∫ cos^2 x dx = (x + sin x cos x)/2 + C
 Tich phan tan^2 | ∫ tan^2 x dx = tan x - x + C
 Tich phan cot^2 | ∫ cot^2 x dx = -cot x - x + C
 Tich phan sin x cos x | ∫ sin x cos x dx = (1/2) sin^2 x + C
-Tich phan sec x | ∫ sec x dx = ln|sec x + tan x| + C
-Tich phan csc x | ∫ csc x dx = ln|csc x - cot x| + C
+Tich phan sec x | ∫ sec x dx = ln
+Tich phan csc x | ∫ csc x dx = ln
 Thay doi bien | ∫ f(g(x)) g'(x) dx = ∫ f(u) du
 Tich phan tung phan | ∫ u dv = u v - ∫ v du
 Tich phan ln x | ∫ ln x dx = x ln x - x + C
@@ -22,25 +22,22 @@ Tich phan arctan x | ∫ arctan x dx = x arctan x - (1/2) ln(1+x^2) + C
 Tich phan arcsin x | ∫ arcsin x dx = x arcsin x + √(1-x^2) + C
 Tich phan arccos x | ∫ arccos x dx = x arccos x - √(1-x^2) + C
 Tich phan 1/(a^2+x^2) | ∫ dx/(a^2+x^2) = (1/a) arctan(x/a) + C
-Tich phan 1/(x^2-a^2) | ∫ dx/(x^2-a^2) = (1/(2a)) ln| (x-a)/(x+a)| + C
+Tich phan 1/(x^2-a^2) | ∫ dx/(x^2-a^2) = (1/(2a)) ln
 Tich phan 1/√(a^2-x^2) | ∫ dx/√(a^2-x^2) = arcsin(x/a) + C
-Tich phan 1/(x √(x^2-a^2)) | ∫ dx/(x √(x^2-a^2)) = (1/a) arcsec(|x|/a) + C
 The tich vo tru | V = 2π ∫_a^b x f(x) dx
 Do dai duong cong | L = ∫_a^b √(1 + [y']^2) dx
 Dien tich be mat quay | S = 2π ∫_a^b y √(1 + [y']^2) dx
 Tich phan hep | ∫_a^b f(x) dx = lim_{n→∞} Σ f(x_i^*) Δx
-Chuoi mu | Σ_{n=0}^∞ x^n = 1/(1-x), |x|<1
+Chuoi mu | Σ_{n=0}^∞ x^n = 1/(1-x), 
 Chuoi Taylor | Σ_{n=0}^∞ f^{(n)}(a)/n! (x-a)^n
 Chuoi Maclaurin | Σ_{n=0}^∞ f^{(n)}(0)/n! x^n
 Gioi han day | lim_{n→∞} a_n = L
-Tieu chuan Cauchy | ∀ε>0 ∃N: |a_n - a_m| < ε ∀ n,m > N
+Tieu chuan Cauchy | ∀ε>0 ∃N: 
 Dieu kien hoi tu | Neu day (a_n) hoi tu thi a_n → 0
-Tieu chuan d'Alembert | Neu lim |a_{n+1}/a_n| = L thi hoi tu neu L < 1
-Tieu chuan Cauchy chuoi | Neu lim sup √[n]{|a_n|} = L thi hoi tu neu L < 1
+Tieu chuan d'Alembert | Neu lim 
 Hoi tu so sanh | Neu 0 ≤ a_n ≤ b_n va ∑ b_n hoi tu thi ∑ a_n hoi tu
 Hoi tu tich phan | Neu ∫_a^∞ f(x) dx hoi tu thi tich phan co tinh chat hoi tu
 Chuoi dieu hoa | ∑ 1/n diverges
-Ban kinh hoi tu | R = 1 / lim sup √[n]{|a_n|}
 Dao ham chuoi | (Σ a_n(x-a)^n)' = Σ n a_n(x-a)^{n-1}
 Tich phan chuoi | ∫ Σ a_n(x-a)^n dx = Σ a_n (x-a)^{n+1}/(n+1)
 Dinh ly gia tri trung binh | ∫_a^b f(x) dx = f(c)(b-a) voi c ∈ (a,b)
@@ -49,5 +46,5 @@ Gioi han tien | lim_{x→a} [f(x)+g(x)] = lim f + lim g
 He Taylor ham e^x | e^x = Σ_{n=0}^∞ x^n/n!
 He Taylor ham sin x | sin x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1)!
 He Taylor ham cos x | cos x = Σ_{n=0}^∞ (-1)^n x^{2n}/(2n)!
-He Taylor ham ln(1+x) | ln(1+x) = Σ_{n=1}^∞ (-1)^{n-1} x^n/n, |x|<1
-He Taylor ham arctan x | arctan x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1), |x|≤1
+He Taylor ham ln(1+x) | ln(1+x) = Σ_{n=1}^∞ (-1)^{n-1} x^n/n, 
+He Taylor ham arctan x | arctan x = Σ_{n=0}^∞ (-1)^n x^{2n+1}/(2n+1), 

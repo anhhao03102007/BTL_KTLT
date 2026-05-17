@@ -36,6 +36,6 @@ void LoadFile(Formula **head, char *nameFile);
 void DisplayOutputList(Formula *List, char *nameFile);
 void DisplayOutput(Formula CongThuc, char *nameFile);
 void XuatDanhSachCongThuc(char *nameFile);
-void TimCongThucTheoTen(char *nameFile);
+void TimCongThucTheoTen(char *nameFile, char *tenMon);
 
 #endif 

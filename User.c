@@ -14,14 +14,30 @@
 #define GREEN   "\033[32m"
 #define WHITE   "\033[97m"
 
-// Dùng chung cho cả User và Admin để tránh lặp code
-static void getFilePath(int mon, char *fileMocHoc) {
+static void getFilePath(int mon, char *fileMocHoc,char *tenMon) {
     switch (mon) {
-        case 1: strcpy(fileMocHoc, "data/Calculus_2.txt");             break;
-        case 2: strcpy(fileMocHoc, "data/Probability_Statistics.txt"); break;
-        case 3: strcpy(fileMocHoc, "data/Political_Economy.txt");      break;
-        case 4: strcpy(fileMocHoc, "data/Physic.txt");                break;
-        default: fileMocHoc[0] = '\0'; break;
+        case 1: 
+            strcpy(fileMocHoc, "data/Calculus_2.txt");             
+            strcpy(tenMon, "Giai tich");
+            break;
+        case 2: 
+            strcpy(fileMocHoc, "data/Physic.txt");                
+            strcpy(tenMon, "Vat ly"); 
+            strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); 
+            strcpy(tenMon, "Xac suat Thong ke"); 
+            break;
+        case 3: 
+            strcpy(fileMocHoc, "data/data/Probability_Statistics.txt"); 
+            strcpy(tenMon, "Xac suat Thong ke");  
+            break;
+        case 4: 
+            strcpy(fileMocHoc, "data/Political_Economy.txt");      
+            strcpy(tenMon, "Kinh te chinh tri"); 
+            break;
+        default: 
+            fileMocHoc[0] = '\0'; 
+            strcpy(tenMon, ""); 
+            break;
     }
 }
 
@@ -48,13 +64,14 @@ void User() {
 
         char fileMocHoc[100];
         int mon;
+        char tenMon[50];
 
         switch (choice) {
             case 1:
                 system("cls");
                 mon = Choice();
                 if (mon == 0) { printf("  Quay lai menu User.\n"); continue; }
-                getFilePath(mon, fileMocHoc);
+                getFilePath(mon, fileMocHoc, tenMon);
                 if (fileMocHoc[0] == '\0') { printf("  Mon hoc khong hop le!\n"); continue; }
                 XuatDanhSachCongThuc(fileMocHoc);
                 break;
@@ -63,9 +80,9 @@ void User() {
                 system("cls");
                 mon = Choice();
                 if (mon == 0) { printf("  Quay lai menu User.\n"); continue; }
-                getFilePath(mon, fileMocHoc);
+                getFilePath(mon, fileMocHoc, tenMon);
                 if (fileMocHoc[0] == '\0') { printf("  Lua chon mon hoc khong hop le!\n"); continue; }
-                TimCongThucTheoTen(fileMocHoc);
+                TimCongThucTheoTen(fileMocHoc, tenMon);
                 break;
 
             case 0:
