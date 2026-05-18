@@ -65,10 +65,11 @@ void hienThiMenuChinh() {
 
         switch (luaChon) {
             case 1:
-                if (dangNhapQuanTriVien()) {
+                if (dangNhapQuanTriVien())
                     Admin();
-                    break; 
-                }
+                else
+                    hienThiMenuChinh();
+                break; 
             case 2:
                 User();
                 break;
