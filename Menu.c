@@ -67,8 +67,11 @@ void hienThiMenuChinh() {
             case 1:
                 if (dangNhapQuanTriVien()) {
                     Admin();
-                    break; 
-                }
+                }else
+                    hienThiMenuChinh();
+                
+                break; 
+
             case 2:
                 User();
                 break;
@@ -82,7 +85,6 @@ void hienThiMenuChinh() {
 int dangNhapQuanTriVien() {
     char matKhau[50];
     const char matKhauDung[] = "admin123"; 
-    
     printf("\n" YELLOW "--- XAC THUC QUAN TRI VIEN ---" RESET "\n");
     printf("Nhap mat khau: ");
     
