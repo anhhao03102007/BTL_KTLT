@@ -65,22 +65,18 @@ void hienThiMenuChinh() {
 
         switch (luaChon) {
             case 1:
-                if (dangNhapQuanTriVien()) {
+                if (dangNhapQuanTriVien())
                     Admin();
-                }else
-                    hienThiMenuChinh();
+                    break; 
                 
-                break; 
-
             case 2:
                 User();
                 break;
             case 0:
                 printf(GREEN "\nCam on ban da su dung chuong trinh. Tam biet!\n" RESET);
                 exit(0);
-        }
-    }
-}
+        }}}
+    
 
 int dangNhapQuanTriVien() {
     char matKhau[50];

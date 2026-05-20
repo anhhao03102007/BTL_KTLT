@@ -1,6 +1,7 @@
   +-----+--------------------------------+-------------------------------------------------------------+
   | STT | Ten cong thuc                  | Cong thuc           |
   +-----+--------------------------------+-------------------------------------------------------------+
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   | 0   | Xac suat hop                   | P(A ∪ B) = P(A) + P(B) - P(A ∩ B) |
   +-----+--------------------------------+--------------------------------------------------------------+
@@ -102,4 +103,36 @@
   +-----+--------------------------------+--------------------------------------------------------------+
   | Tong so: 51  cong thuc                                                                             |
 >>>>>>> 1d96a1ccd55a4e2b278281dfa4a8f6bd5a4c816a
+=======
+  | 0   | Tich luy gia tri               | GDP = C + I + G + (X - M) |
+  | 1   | Tieu dung                      | C = a + b Y_d       |
+  | 2   | Thu nhap rong                  | Y_d = Y - T         |
+  | 3   | Luu tru                        | S = Y - C - T       |
+  | 4   | Dau tu                         | I = s Y             |
+  | 5   | Cau cung toan xa hoi           | Y = C + I + G + NX  |
+  | 6   | Can bang ngan sach             | G - T = S - I       |
+  | 7   | Chat luong tien te             | M V = P Y           |
+  | 8   | Ty le luu thong                | V = P Y / M         |
+  | 9   | Chinh sach tien te             | M = k P Y           |
+  | 10  | Ty le thue                     | T = t Y             |
+  | 11  | Loi ich bien                   | MU = dU / dQ        |
+  | 12  | Duoc dong tien                 | π = TR - TC        |
+  | 13  | Tien cong ban                  | TR = P Q            |
+  | 14  | Chi phi bien                   | MC = dTC / dQ       |
+  | 15  | Chi phi co dinh                | AFC = FC / Q        |
+  | 16  | Chi phi trung binh             | AC = TC / Q         |
+  | 17  | Loi nhuan buoc                 | MR = MC             |
+  | 18  | Thi tran can doi               | D = S               |
+  | 19  | Ty le thue hoan lai            | r = CF / I          |
+  | 20  | Ty le toc do tang truong       | g = (Y_t - Y_{t-1}) / Y_{t-1} |
+  | 21  | Chi phi co hoi                 | OC = gia tri cao nhat bi bo lo |
+  | 22  | Cung tien tren thi truong      | M_s = M_d           |
+  | 23  | Luong lao dong                 | w = MPL             |
+  | 24  | Nang suat                      | MPL = dQ / dL       |
+  | 25  | Hieu suat toan xa hoi          | E = U_1 + U_2       |
+  | 26  | Chinh sach fiscal              | G tang hoac T giam  |
+  | 27  | Cau truc lon                   | P = MC o thi truong hoan hao can |
+  +-----+--------------------------------+--------------------------------------------------------------+
+  | Tong so: 28  cong thuc                                                                             |
+>>>>>>> Stashed changes
   +-----+--------------------------------+--------------------------------------------------------------+
